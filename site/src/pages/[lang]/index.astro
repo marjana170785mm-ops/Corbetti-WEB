@@ -1,0 +1,600 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { localeNames, locales, siteContent, type Locale } from '../../data/site';
+
+export function getStaticPaths() {
+	return locales.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+
+if (!locales.includes(lang)) {
+	throw new Error(`Unsupported locale: ${lang}`);
+}
+
+const content = siteContent[lang];
+const alternates = locales.map((locale) => ({
+	lang: locale,
+	href: `/${locale}/`,
+}));
+
+const processCardImages = [
+	'/images/corbetti/getapro-house-frame-01.jpg',
+	'/images/corbetti/facade-project.jpg',
+	'/images/corbetti/montaz-03.jpg',
+	'/images/corbetti/finished-corridor.jpg',
+];
+
+const clientCardImages = [
+	'/images/corbetti/getapro-house-11.jpg',
+	'/images/corbetti/getapro-windows-12.jpg',
+	'/images/corbetti/getapro-facade-b-03.jpg',
+];
+---
+
+<BaseLayout
+	lang={lang}
+	title={content.metaTitle}
+	description={content.metaDescription}
+	alternates={alternates}
+>
+	<div class="page-shell" id="top">
+		<header class="site-header">
+			<div class="container header-inner">
+				<a class="brand" href={`/${lang}/`}>
+					<span class="brand-mark">C</span>
+					<span class="brand-copy">
+						<strong>CORBETTI OÜ</strong>
+						<small>{content.hero.eyebrow}</small>
+					</span>
+				</a>
+
+				<nav class="main-nav" aria-label="Primary">
+					<a href="#services">{content.nav.services}</a>
+					<a href="#process">{content.nav.process}</a>
+					<a href="#clients">{content.nav.clients}</a>
+					<a href="#portfolio">{content.nav.portfolio}</a>
+					<a href="#faq">{content.nav.faq}</a>
+					<a href="#contact">{content.nav.contact}</a>
+				</nav>
+
+				<div class="language-switcher" aria-label="Languages">
+					{
+						locales.map((locale) => (
+							<a class:list={['lang-pill', { active: locale === lang }]} href={`/${locale}/`}>
+								{siteContent[locale].langLabel}
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</header>
+
+		<main>
+			<section class="hero-section">
+				<div class="container">
+					<div class="hero-shell reveal">
+						<img src="/images/corbetti/getapro-house-cover.jpg" alt="Corbetti OГњ project" class="hero-bg-image" />
+						<div class="hero-overlay"></div>
+						<div class="hero-copy hero-copy-centered">
+							<p class="section-kicker section-kicker-light">{content.hero.eyebrow}</p>
+							<h1>{content.hero.title}</h1>
+							<p class="hero-text">{content.hero.description}</p>
+							<div class="hero-actions hero-actions-centered">
+								<a class="button button-primary" href="#contact">{content.hero.primaryCta}</a>
+								<a class="button button-secondary button-secondary-dark" href="#portfolio">{content.hero.secondaryCta}</a>
+							</div>
+						</div>
+
+						<div class="hero-stats hero-stats-overlay">
+							{
+								content.hero.stats.map((stat) => (
+									<div class="stat-card stat-card-dark">
+										<strong>{stat.value}</strong>
+										<span>{stat.label}</span>
+									</div>
+								))
+							}
+						</div>
+
+						<div class="hero-badge">
+							<strong>{localeNames[lang]}</strong>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="intro-section">
+				<div class="container intro-panel">
+					<div class="catalog-heading reveal">
+						<p class="section-kicker">{content.intro.kicker}</p>
+					</div>
+					<div class="reveal">
+						<p class="section-text intro-body">{content.intro.body}</p>
+						<div class="badge-row">
+							{
+								content.intro.badges.map((badge) => (
+									<span class="info-badge">{badge}</span>
+								))
+							}
+						</div>
+					</div>
+
+					<div class="intro-metrics">
+						{
+							content.hero.stats.map((stat) => (
+								<div class="intro-metric reveal">
+									<strong>{stat.value}</strong>
+									<span>{stat.label}</span>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="services-section" id="services">
+				<div class="container">
+					<div class="catalog-heading reveal">
+						<p class="section-kicker">{content.services.kicker}</p>
+					</div>
+
+					<div class="service-catalog">
+						{
+							content.services.cards.map((card, index) => (
+								<article class="service-category reveal" style={`--delay:${index * 80}ms`}>
+									<div class="service-category-heading">
+										<h3>{card.title}</h3>
+									</div>
+									<p class="service-category-text">{card.text}</p>
+									<ul class="service-category-list">
+										{card.items.map((item) => <li>{item}</li>)}
+									</ul>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="process-section" id="process">
+				<div class="container">
+					<div class="catalog-heading reveal">
+						<p class="section-kicker">{content.process.kicker}</p>
+					</div>
+					<div class="service-catalog process-catalog">
+						{
+							content.process.steps.map((step, index) => (
+								<article
+									class="service-category process-category media-card reveal"
+									style={`--delay:${index * 70}ms; --card-image:url('${processCardImages[index % processCardImages.length]}'); --float-duration:${15 + index * 1.5}s; --float-shift:${index % 2 === 0 ? '12px' : '-12px'}; --float-delay:${index * -1.8}s;`}
+								>
+									<div class="service-category-heading">
+										<h3>{step.title}</h3>
+									</div>
+									<p class="service-category-text">{step.text}</p>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="clients-section" id="clients">
+				<div class="container">
+					<div class="catalog-heading reveal">
+						<p class="section-kicker">{content.clients.kicker}</p>
+					</div>
+					<div class="service-catalog client-catalog">
+						{
+							content.clients.cards.map((card, index) => (
+								<article
+									class="service-category client-category media-card reveal"
+									style={`--delay:${index * 70}ms; --card-image:url('${clientCardImages[index % clientCardImages.length]}'); --float-duration:${16 + index * 1.8}s; --float-shift:${index % 2 === 0 ? '10px' : '-10px'}; --float-delay:${index * -1.5}s;`}
+								>
+									<div class="service-category-heading">
+										<h3>{card.title}</h3>
+									</div>
+									<p class="service-category-text">{card.text}</p>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="portfolio-section" id="portfolio">
+				<div class="container">
+					<div class="catalog-heading reveal">
+						<p class="section-kicker">{content.portfolio.kicker}</p>
+					</div>
+
+					<div class="portfolio-showcase">
+						{
+							content.portfolio.items.map((item, itemIndex) => (
+								<article class="portfolio-project reveal" style={`--delay:${itemIndex * 110}ms`}>
+									<div class="portfolio-project-copy">
+										<span class="portfolio-project-index">0{itemIndex + 1}</span>
+										<h3>{item.title}</h3>
+										{item.text && <p>{item.text}</p>}
+									</div>
+									<div class="portfolio-gallery-compact" aria-label={item.title}>
+										{
+											item.images[0] && (
+												<button
+													type="button"
+													class="portfolio-gallery-cover"
+													data-gallery-group={`project-${itemIndex}`}
+													data-gallery-image={item.images[0]}
+													data-gallery-title={item.title}
+													data-gallery-caption={`${item.title} 1`}
+													aria-label={`${item.title} 1`}
+												>
+													<img
+														src={item.images[0]}
+														alt={`${item.title} 1`}
+														loading="lazy"
+														class="portfolio-gallery-image"
+													/>
+													<span class="portfolio-gallery-count">
+														+{Math.max(item.images.length - 1, 0)}
+													</span>
+												</button>
+											)
+										}
+										<div class="portfolio-gallery-hidden" aria-hidden="true">
+											{
+												item.images.slice(1).map((image, imageIndex) => (
+													<button
+														type="button"
+														class="portfolio-gallery-hidden-tile"
+														tabindex="-1"
+														data-gallery-group={`project-${itemIndex}`}
+														data-gallery-image={image}
+														data-gallery-title={item.title}
+														data-gallery-caption={`${item.title} ${imageIndex + 2}`}
+														aria-hidden="true"
+													/>
+												))
+											}
+										</div>
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="faq-section" id="faq">
+				<div class="container">
+					<div class="catalog-heading reveal">
+						<p class="section-kicker">{content.faq.kicker}</p>
+					</div>
+					<div class="faq-intro reveal">
+						<h2>{content.faq.title}</h2>
+						<p class="section-text">{content.faq.body}</p>
+					</div>
+					<div class="faq-grid">
+						{
+							content.faq.categories.map((category, categoryIndex) => (
+								<article class="faq-category reveal" style={`--delay:${categoryIndex * 70}ms`}>
+									<div class="faq-category-heading">
+										<h3>{category.title}</h3>
+									</div>
+									<div class="faq-items">
+										{
+											category.items.map((item) => (
+												<details class="faq-item">
+													<summary>{item.question}</summary>
+													<p>{item.answer}</p>
+												</details>
+											))
+										}
+									</div>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="contact-section" id="contact">
+				<div class="container contact-shell">
+					<div class="contact-copy reveal">
+						<p class="section-kicker">{content.contact.kicker}</p>
+						<p class="section-text">{content.contact.body}</p>
+						<div class="hero-actions">
+							<a class="button button-primary" href={content.contact.primaryHref}>{content.contact.primaryAction}</a>
+							<a class="button button-secondary" href={content.contact.secondaryHref} target="_blank" rel="noreferrer">
+								{content.contact.secondaryAction}
+							</a>
+							<a class="button button-secondary" href={`mailto:${content.contact.email}`}>
+								{content.contact.emailAction}
+							</a>
+						</div>
+						<p class="contact-email">
+							<span>{content.contact.emailLabel}</span>
+							<a href={`mailto:${content.contact.email}`}>{content.contact.email}</a>
+						</p>
+						<p class="contact-note">{content.contact.note}</p>
+					</div>
+					<div class="contact-cards">
+						<form class="contact-form reveal" data-inquiry-form>
+							<h3>{content.contact.form.title}</h3>
+							<label class="form-field">
+								<span>{content.contact.form.nameLabel}</span>
+								<input name="name" type="text" autocomplete="name" required />
+							</label>
+							<label class="form-field">
+								<span>{content.contact.form.phoneLabel}</span>
+								<input name="phone" type="tel" autocomplete="tel" required />
+							</label>
+							<label class="form-field">
+								<span>{content.contact.form.locationLabel}</span>
+								<input name="location" type="text" autocomplete="street-address" />
+							</label>
+							<label class="form-field">
+								<span>{content.contact.form.workTypeLabel}</span>
+								<input name="workType" type="text" />
+							</label>
+							<label class="form-field">
+								<span>{content.contact.form.messageLabel}</span>
+								<textarea name="message" rows="4" required></textarea>
+							</label>
+							<button
+								class="button button-primary form-submit"
+								type="submit"
+								data-submit-label={content.contact.form.submitLabel}
+								data-submitting-label={content.contact.form.submittingLabel}
+							>
+								{content.contact.form.submitLabel}
+							</button>
+							<p
+								class="form-note"
+								data-form-note
+								data-default-note={content.contact.form.telegramNotice}
+								data-success-message={content.contact.form.successMessage}
+								data-error-message={content.contact.form.errorMessage}
+							>
+								{content.contact.form.telegramNotice}
+							</p>
+						</form>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="site-footer">
+			<div class="container footer-inner">
+				<div>
+					<strong>{content.footer.company}</strong>
+					<p>{content.footer.rights}</p>
+				</div>
+				<a href="#top">{content.nav.contact}</a>
+			</div>
+		</footer>
+
+		<div class="floating-actions" aria-label="Quick contact actions" data-floating-actions>
+			<a class="floating-action floating-action-call" href={content.contact.primaryHref}>
+				<span class="floating-action-icon" aria-hidden="true">
+					<svg viewBox="0 0 24 24" role="img" focusable="false">
+						<path
+							d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.3 11.3 0 0 0 3.55.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.3 11.3 0 0 0 .58 3.55 1 1 0 0 1-.25 1.02z"
+						></path>
+					</svg>
+				</span>
+				<span class="floating-action-copy">
+					<span class="floating-action-label">{content.contact.primaryAction}</span>
+					<strong>+372 5633 3338</strong>
+				</span>
+			</a>
+			<a
+				class="floating-action floating-action-telegram"
+				href={content.contact.secondaryHref}
+				target="_blank"
+				rel="noreferrer"
+			>
+				<span class="floating-action-icon" aria-hidden="true">
+					<svg viewBox="0 0 24 24" role="img" focusable="false">
+						<path
+							d="M21.5 4.5 18.4 19c-.23 1.02-.84 1.27-1.7.8l-4.7-3.46-2.26 2.18c-.25.25-.46.46-.94.46l.34-4.82 8.78-7.93c.38-.34-.08-.54-.58-.2l-10.85 6.84-4.67-1.46c-1.02-.32-1.04-1.02.22-1.51L20.1 3.1c.84-.3 1.57.2 1.3 1.4Z"
+						></path>
+					</svg>
+				</span>
+				<span class="floating-action-copy">
+					<span class="floating-action-label">Telegram</span>
+					<strong>@corbetti_build</strong>
+				</span>
+			</a>
+		</div>
+
+		<dialog class="gallery-dialog" data-gallery-dialog>
+			<button type="button" class="gallery-dialog-close" aria-label="Close gallery" data-gallery-close>
+				&#215;
+			</button>
+			<div class="gallery-dialog-inner">
+				<div class="gallery-dialog-stage">
+					<button type="button" class="gallery-dialog-nav gallery-dialog-nav-prev" aria-label="Previous photo" data-gallery-prev>
+						&#8249;
+					</button>
+					<img src="" alt="" class="gallery-dialog-image" data-gallery-preview />
+					<button type="button" class="gallery-dialog-nav gallery-dialog-nav-next" aria-label="Next photo" data-gallery-next>
+						&#8250;
+					</button>
+				</div>
+				<div class="gallery-dialog-copy">
+					<strong data-gallery-preview-title></strong>
+					<span data-gallery-preview-caption></span>
+				</div>
+			</div>
+		</dialog>
+	</div>
+
+	<script is:inline>
+		const floatingActions = document.querySelector('[data-floating-actions]');
+		const galleryDialog = document.querySelector('[data-gallery-dialog]');
+		const galleryPreview = document.querySelector('[data-gallery-preview]');
+		const galleryPreviewTitle = document.querySelector('[data-gallery-preview-title]');
+		const galleryPreviewCaption = document.querySelector('[data-gallery-preview-caption]');
+		const galleryClose = document.querySelector('[data-gallery-close]');
+		const galleryPrev = document.querySelector('[data-gallery-prev]');
+		const galleryNext = document.querySelector('[data-gallery-next]');
+		const inquiryForm = document.querySelector('[data-inquiry-form]');
+
+		if (floatingActions) {
+			const toggleFloatingActions = () => {
+				const isVisible = window.scrollY > 320;
+				floatingActions.classList.toggle('is-visible', isVisible);
+			};
+
+			toggleFloatingActions();
+			window.addEventListener('scroll', toggleFloatingActions, { passive: true });
+		}
+
+		if (galleryDialog && galleryPreview && galleryPreviewTitle && galleryPreviewCaption) {
+			const galleryTiles = Array.from(document.querySelectorAll('[data-gallery-image]'));
+			let activeGalleryIndex = -1;
+			let activeGalleryTiles = [];
+
+			const renderGalleryItem = (index) => {
+				const normalizedIndex = (index + activeGalleryTiles.length) % activeGalleryTiles.length;
+				const activeTile = activeGalleryTiles[normalizedIndex];
+
+				if (!activeTile) {
+					return;
+				}
+
+				activeGalleryIndex = normalizedIndex;
+				galleryPreview.setAttribute('src', activeTile.getAttribute('data-gallery-image') ?? '');
+				galleryPreview.setAttribute('alt', activeTile.getAttribute('data-gallery-caption') ?? '');
+				galleryPreviewTitle.textContent = activeTile.getAttribute('data-gallery-title') ?? '';
+				galleryPreviewCaption.textContent = activeTile.getAttribute('data-gallery-caption') ?? '';
+			};
+
+			const stepGallery = (direction) => {
+				if (!activeGalleryTiles.length) {
+					return;
+				}
+
+				const nextIndex = activeGalleryIndex >= 0 ? activeGalleryIndex + direction : 0;
+				renderGalleryItem(nextIndex);
+			};
+
+			galleryTiles.forEach((tile, index) => {
+				tile.addEventListener('click', () => {
+					const group = tile.getAttribute('data-gallery-group') ?? '';
+					activeGalleryTiles = galleryTiles.filter(
+						(candidate) => (candidate.getAttribute('data-gallery-group') ?? '') === group,
+					);
+					const nextIndex = activeGalleryTiles.indexOf(tile);
+					renderGalleryItem(nextIndex >= 0 ? nextIndex : index);
+					galleryDialog.showModal();
+				});
+			});
+
+			galleryClose?.addEventListener('click', () => galleryDialog.close());
+			galleryPrev?.addEventListener('click', () => stepGallery(-1));
+			galleryNext?.addEventListener('click', () => stepGallery(1));
+
+			galleryDialog.addEventListener('click', (event) => {
+				if (event.target === galleryDialog) {
+					galleryDialog.close();
+				}
+			});
+
+			galleryDialog.addEventListener('keydown', (event) => {
+				if (event.key === 'ArrowLeft') {
+					event.preventDefault();
+					stepGallery(-1);
+				}
+
+				if (event.key === 'ArrowRight') {
+					event.preventDefault();
+					stepGallery(1);
+				}
+			});
+		}
+
+		if (inquiryForm) {
+			const submitButton = inquiryForm.querySelector('.form-submit');
+			const formNote = inquiryForm.querySelector('[data-form-note]');
+
+			inquiryForm.addEventListener('submit', async (event) => {
+				event.preventDefault();
+
+				const formData = new FormData(inquiryForm);
+				const name = String(formData.get('name') ?? '').trim();
+				const phone = String(formData.get('phone') ?? '').trim();
+				const location = String(formData.get('location') ?? '').trim();
+				const workType = String(formData.get('workType') ?? '').trim();
+				const message = String(formData.get('message') ?? '').trim();
+
+				if (submitButton instanceof HTMLButtonElement) {
+					submitButton.disabled = true;
+					submitButton.textContent = submitButton.dataset.submittingLabel ?? 'Sending...';
+				}
+
+				if (formNote instanceof HTMLElement) {
+					formNote.textContent = formNote.dataset.defaultNote ?? '';
+					formNote.dataset.state = 'idle';
+				}
+
+				try {
+					const response = await fetch('/api/telegram-inquiry', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({
+							name,
+							phone,
+							location,
+							workType,
+							message,
+							pageUrl: window.location.href,
+							locale: document.documentElement.lang || 'ru',
+						}),
+					});
+
+					if (!response.ok) {
+						throw new Error(`Request failed with status ${response.status}`);
+					}
+
+					inquiryForm.reset();
+
+					if (formNote instanceof HTMLElement) {
+						formNote.textContent = formNote.dataset.successMessage ?? '';
+						formNote.dataset.state = 'success';
+					}
+				} catch (error) {
+					console.error(error);
+
+					if (formNote instanceof HTMLElement) {
+						formNote.textContent = formNote.dataset.errorMessage ?? '';
+						formNote.dataset.state = 'error';
+					}
+				} finally {
+					if (submitButton instanceof HTMLButtonElement) {
+						submitButton.disabled = false;
+						submitButton.textContent = submitButton.dataset.submitLabel ?? 'Submit';
+					}
+				}
+
+				return;
+				const lines = [
+					'Новая заявка с сайта CORBETTI OÜ',
+					`Имя: ${name}`,
+					`Телефон: ${phone}`,
+					location ? `Адрес объекта: ${location}` : '',
+					workType ? `Тип работ: ${workType}` : '',
+					`Описание: ${message}`,
+				].filter(Boolean);
+				const telegramUrl = `${telegramShareBase}?text=${encodeURIComponent(lines.join('\n'))}`;
+
+				window.open(telegramUrl, '_blank', 'noopener,noreferrer');
+			});
+		}
+	</script>
+</BaseLayout>
+

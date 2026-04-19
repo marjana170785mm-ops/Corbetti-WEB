@@ -1,0 +1,233 @@
+import type { PageContent } from '../types';
+import { portfolioFacadeImages, portfolioHouseImages, portfolioInteriorImages } from '../portfolio-images';
+
+export const en: PageContent = {
+	langLabel: 'EN',
+	metaTitle: 'CORBETTI OÜ | Construction and Renovation',
+	metaDescription:
+		'CORBETTI OÜ delivers construction, renovation, facade, concrete and interior finishing services for private clients, businesses and apartment associations.',
+	nav: {
+		services: 'Services',
+		portfolio: 'Portfolio',
+		process: 'Process',
+		clients: 'Clients',
+		faq: 'FAQ',
+		contact: 'Contact',
+	},
+	hero: {
+		eyebrow: 'CORBETTI OÜ · construction company in Estonia',
+		title: 'Construction, renovation and finishing from one team.',
+		description:
+			'We handle full-scope building work for homeowners, companies and apartment associations with clear communication and practical execution.',
+		primaryCta: 'Start an inquiry',
+		secondaryCta: 'View projects',
+		stats: [
+			{ value: 'B2C / B2B', label: 'private and business clients' },
+			{ value: 'Full scope', label: 'from prep to finish' },
+			{ value: 'Estonia', label: 'projects across different sites' },
+		],
+	},
+	intro: {
+		kicker: 'Wide service range',
+		title: 'Build, renew and finish with one contractor.',
+		body:
+			'CORBETTI OÜ covers general construction, major renovation, facade work, concrete and foundations, window and door installation, drywall systems, demolition, carpentry and repair jobs.',
+		badges: ['Private clients', 'Businesses', 'Apartment associations', 'Practical execution'],
+	},
+	services: {
+		kicker: 'Core expertise',
+		title: 'What CORBETTI OÜ delivers',
+		body: 'The service blocks below highlight the company’s main areas of work in a cleaner and more practical format.',
+		cards: [
+			{
+				title: 'House construction and extensions',
+				text: 'Comprehensive solutions for detached houses and smaller buildings.',
+				items: ['Private houses', 'Saunas and garages', 'Terraces and canopies'],
+			},
+			{
+				title: 'Apartment and space renovation',
+				text: 'Major refurbishment for homes, offices and common-use premises.',
+				items: ['Major renovation', 'Apartment upgrades', 'Commercial spaces'],
+			},
+			{
+				title: 'Concrete and foundations',
+				text: 'Reliable structural groundwork and concrete execution for different sites.',
+				items: ['Foundation pouring', 'Waterproofing and insulation', 'Stairs and walkways'],
+			},
+			{
+				title: 'Facades and insulation',
+				text: 'Exterior work focused on durability, energy efficiency and appearance.',
+				items: ['Facade finishing', 'Thermal insulation', 'Balcony insulation'],
+			},
+			{
+				title: 'Interior finishing and drywall',
+				text: 'Clean interior systems for ceilings, partitions, walls and floors.',
+				items: ['Suspended ceilings', 'Partitions', 'Floor and wall finishes'],
+			},
+			{
+				title: 'Demolition and installation',
+				text: 'Preparation, fitting and smaller execution tasks around the property.',
+				items: ['Demolition', 'Windows and doors', 'Fences and gates'],
+			},
+		],
+	},
+	clients: {
+		kicker: 'Who we work with',
+		title: 'Flexible enough for private jobs and larger projects',
+		body: 'The company works with individual homeowners as well as business and property-management needs.',
+		cards: [
+			{ title: 'Private clients', text: 'Homes, apartments, terraces, garages and targeted repair projects.' },
+			{ title: 'Business clients', text: 'Offices, commercial sites, industrial spaces and phased execution.' },
+			{ title: 'Apartment associations', text: 'Shared areas, facades, stairwells and building upgrades.' },
+		],
+	},
+	process: {
+		kicker: 'How we work',
+		title: 'A straightforward path from inquiry to handover',
+		steps: [
+			{ title: '1. Scope review', text: 'We discuss the site, project needs, timing and expected outcome.' },
+			{ title: '2. Proposal', text: 'We define the work scope, sequencing and pricing logic clearly.' },
+			{ title: '3. Execution', text: 'Construction and renovation work moves forward in agreed stages.' },
+			{ title: '4. Completion', text: 'We review the result, finish the details and prepare the site for use.' },
+		],
+	},
+	portfolio: {
+		kicker: 'Our work',
+		title: 'Real CORBETTI OÜ projects from the GetaPro portfolio',
+		items: [
+			{
+				title: 'Private house and key construction stages',
+				text: 'One project shown through ten frames, from the exterior to stairs and interior progress.',
+				images: portfolioHouseImages,
+			},
+			{
+				title: 'Ceilings, partitions and engineering details',
+				text: 'A gallery of working moments focused on ceiling systems, insulation, partitions and technical preparation.',
+				images: portfolioInteriorImages,
+			},
+			{
+				title: 'Exterior details, openings and interior finish',
+				text: 'Another project block with facade elements, openings and more advanced interior stages.',
+				images: portfolioFacadeImages,
+			},
+		],
+	},
+	faq: {
+		kicker: 'Questions and answers',
+		title: 'FAQ about renovation, finishing and utility work',
+		body: 'Short answers to the questions clients ask most often before electrical, finishing, tiling, flooring, plumbing and general renovation work.',
+		categories: [
+			{
+				title: 'Electrical',
+				items: [
+					{ question: 'How do you install a socket correctly?', answer: 'Socket installation includes cutting power, preparing the wires and connecting them properly to the terminals. Mistakes can cause a short circuit or fire, so this work is best handled by a specialist.' },
+					{ question: 'Can I replace a light switch myself?', answer: 'Yes, if you have basic knowledge and follow safety rules. But if you have any doubts at all, it is better to call a professional because the task is inexpensive but still safety-critical.' },
+					{ question: 'How can I tell that the wiring is old and needs replacement?', answer: 'Typical signs are tripping breakers, hot sockets, old aluminum wiring, sparks or a burning smell. In these cases replacement should not be postponed.' },
+					{ question: 'How much does new wiring cost?', answer: 'The price depends on the floor area, number of points and the complexity of the work. It can range from simple budget solutions to a full turnkey replacement. An exact quote is possible after inspection.' },
+					{ question: 'Where should kitchen sockets be placed?', answer: 'Sockets should be located near the appliances: refrigerator, stove, kettle and microwave. It is important to plan enough outlets in advance so extension cords are not needed later.' },
+					{ question: 'How many sockets are needed in one room?', answer: 'At least 4 to 6, but usually more is better for a TV, chargers and lighting. Modern apartments typically need more sockets than older layouts provided.' },
+					{ question: 'How can wires be hidden inside a wall?', answer: 'The wires are laid into wall chases and then covered with plaster. It is a dusty and technically demanding job that requires proper tools and experience.' },
+				],
+			},
+			{
+				title: 'Wall finishing',
+				items: [
+					{ question: 'How do you prepare walls for painting?', answer: 'Remove the old finish, level the surface, apply filler and primer. Without proper preparation the paint will not sit evenly.' },
+					{ question: 'Do walls need primer before painting?', answer: 'Yes. Primer improves adhesion and reduces paint consumption.' },
+					{ question: 'How do you apply wall filler correctly?', answer: 'Filler is usually applied in several coats with sanding between coats. It is important to control both flatness and layer thickness.' },
+					{ question: 'How do you mix filler without lumps?', answer: 'Pour the powder into water, not the other way around, and mix it with a mixer. The correct proportions also matter.' },
+					{ question: 'How many filler coats are needed?', answer: 'Usually 2 or 3 coats: a base coat and a finish coat. The exact number depends on the condition of the walls.' },
+					{ question: 'How do you level walls?', answer: 'Major unevenness is corrected with plaster, while smaller defects are handled with filler. In some cases drywall systems are used.' },
+					{ question: 'Which is better: wallpaper or paint?', answer: 'Paint looks modern and is easy to refresh later. Wallpaper hides small defects more easily. The right choice depends on budget and goals.' },
+				],
+			},
+			{
+				title: 'Tiles',
+				items: [
+					{ question: 'How do you lay tiles evenly?', answer: 'The base must be level, and you need a level tool plus tile spacers. Without experience it is difficult to achieve a truly clean result.' },
+					{ question: 'How do you choose tiles for a bathroom?', answer: 'Look at moisture resistance, slip resistance and durability.' },
+					{ question: 'How do you cut tiles without chipping?', answer: 'A tile cutter or a suitable specialist tool is used. Without it, the material is easy to ruin.' },
+					{ question: 'How much does tile installation cost?', answer: 'The price depends on tile size, layout complexity and base preparation. It is usually calculated per square meter.' },
+					{ question: 'What if a tile has come loose?', answer: 'Remove the old adhesive, clean the surface and glue the tile again. If many tiles are failing, the area likely needs a larger rework.' },
+				],
+			},
+			{
+				title: 'Floors',
+				items: [
+					{ question: 'Which floor is better: laminate or tile?', answer: 'Laminate feels warmer and cozier, while tile is more durable and moisture-resistant. A combination of both is often the best solution.' },
+					{ question: 'How do you install laminate flooring?', answer: 'It is laid on an even base with underlay and an expansion gap along the walls. If the method is wrong, the floor can swell later.' },
+					{ question: 'Does the floor need leveling before installation?', answer: 'Yes. Unevenness can cause squeaks and lead to damage.' },
+					{ question: 'What if the floor squeaks?', answer: 'The reason is usually an uneven base or poor installation. Partial or full repair may be required.' },
+					{ question: 'How do you choose underfloor heating?', answer: 'There are electric and water-based systems. The right choice depends on the room and the budget.' },
+				],
+			},
+			{
+				title: 'Plumbing',
+				items: [
+					{ question: 'How do you install a toilet?', answer: 'It requires precise connection to the drain and proper sealing. Mistakes can cause leaks.' },
+					{ question: 'How do you replace a faucet?', answer: 'Shut off the water, remove the old faucet and install the new one with proper sealing. The job is not difficult, but it requires accuracy.' },
+					{ question: 'Why is the tap leaking and what should be done?', answer: 'Most often the seals or cartridge are worn out. Those parts need replacement.' },
+					{ question: 'How do you clear pipes?', answer: 'Household products can help with small clogs, but serious blockages usually require a professional.' },
+					{ question: 'How much does plumbing replacement cost?', answer: 'It depends on the volume of work and the chosen equipment. The price is calculated individually.' },
+				],
+			},
+			{
+				title: 'General renovation',
+				items: [
+					{ question: 'Where should apartment renovation start?', answer: 'Start with a plan and a budget. It is important to think through all phases in advance.' },
+					{ question: 'What is the right order of renovation work?', answer: 'Rough work comes first, then finishing: walls, floor and ceiling.' },
+					{ question: 'Can renovation be done in winter?', answer: 'Yes, but some materials and temperature conditions create limitations.' },
+					{ question: 'How much does turnkey renovation cost?', answer: 'The price depends on the condition of the apartment and the expected scope. It is calculated after inspection.' },
+					{ question: 'How do you choose a construction company?', answer: 'Look at experience, reviews, contract terms and warranty.' },
+				],
+			},
+			{
+				title: 'Useful small jobs',
+				items: [
+					{ question: 'How do you hang a shelf on a wall?', answer: 'Choose the right fixings for the wall type and mark the holes accurately before drilling.' },
+					{ question: 'How do you drill into a wall without cracks?', answer: 'Use the right drill bit and avoid pushing too hard.' },
+					{ question: 'How do you repair a crack in a wall?', answer: 'Clean it, apply primer and fill it with filler.' },
+					{ question: 'How do you remove old wallpaper?', answer: 'Wet it with water or a special solution and then remove it with a scraper.' },
+					{ question: 'How do you paint a ceiling without streaks?', answer: 'Use a good roller and apply the paint evenly in several coats.' },
+				],
+			},
+		],
+	},
+	contact: {
+		kicker: 'Next step',
+		title: 'Ready to discuss your project',
+		body: 'Share the location, work type and target timeline. CORBETTI OÜ accepts inquiries by phone and Telegram.',
+		emailLabel: 'Email',
+		email: 'corbetti.group@gmail.com',
+		emailAction: 'Write by email',
+		primaryAction: 'Call now',
+		primaryHref: 'tel:+37256333338',
+		secondaryAction: 'Message on Telegram',
+		secondaryHref: 'https://t.me/corbetti_build',
+		form: {
+			title: 'Send an inquiry',
+			nameLabel: 'Name',
+			phoneLabel: 'Phone',
+			locationLabel: 'Project location',
+			workTypeLabel: 'Type of work',
+			messageLabel: 'Describe the project',
+			submitLabel: 'Send via Telegram',
+			submittingLabel: 'Sending...',
+			successMessage: 'Your inquiry has been sent. We will get back to you soon.',
+			errorMessage: 'Failed to send the inquiry. Please try again or write to us on Telegram.',
+			telegramNotice: 'The form sends your inquiry directly to Telegram.',
+		},
+		cards: [
+			{ label: 'Phone', value: '+372 5633 3338' },
+			{ label: 'Telegram', value: '@corbetti_build' },
+			{ label: 'Languages', value: 'Eesti, Russian, English, Suomi, Svenska' },
+			{ label: 'Client types', value: 'Private clients, businesses, apartment associations' },
+			{ label: 'Focus', value: 'Construction, renovation, facades, concrete, interiors' },
+		],
+		note: 'For a faster reply, send a short project brief, the site location and your preferred timeline in Telegram.',
+	},
+	footer: {
+		company: 'CORBETTI OÜ',
+		rights: 'Multilingual construction and renovation partner.',
+	},
+};

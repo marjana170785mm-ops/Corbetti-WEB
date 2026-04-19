@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+
+type AlternateLink = {
+	lang: string;
+	href: string;
+};
+
+interface Props {
+	lang: string;
+	title: string;
+	description: string;
+	alternates: AlternateLink[];
+}
+
+const { lang, title, description, alternates } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#171717" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Oswald:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		{
+			alternates.map((alternate) => (
+				<link rel="alternate" hreflang={alternate.lang} href={new URL(alternate.href, Astro.url).toString()} />
+			))
+		}
+		<link rel="alternate" hreflang="x-default" href={new URL('/et/', Astro.url).toString()} />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

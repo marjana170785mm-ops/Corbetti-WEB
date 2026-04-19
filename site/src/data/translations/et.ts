@@ -1,0 +1,233 @@
+import type { PageContent } from '../types';
+import { portfolioFacadeImages, portfolioHouseImages, portfolioInteriorImages } from '../portfolio-images';
+
+export const et: PageContent = {
+	langLabel: 'EE',
+	metaTitle: 'CORBETTI OÜ | Ehitus- ja renoveerimistööd',
+	metaDescription:
+		'CORBETTI OÜ teostab ehitus-, renoveerimis-, fassaadi-, betooni- ja siseviimistlustöid eraisikutele, äriklientidele ja korteriühistutele.',
+	nav: {
+		services: 'Teenused',
+		portfolio: 'Portfoolio',
+		process: 'Protsess',
+		clients: 'Kliendid',
+		faq: 'KKK',
+		contact: 'Kontakt',
+	},
+	hero: {
+		eyebrow: 'CORBETTI OÜ · ehituspartner Eestis',
+		title: 'Kõik ehitustööd ühest meeskonnast.',
+		description:
+			'Teostame ehitus-, renoveerimis- ja siseviimistlustöid algusest lõpuni. Töötame eraisikute, ettevõtete ja korteriühistutega.',
+		primaryCta: 'Saada päring',
+		secondaryCta: 'Vaata töid',
+		stats: [
+			{ value: 'B2C / B2B', label: 'eraisikud ja ärikliendid' },
+			{ value: 'Täislahendus', label: 'projektist viimistluseni' },
+			{ value: 'Eesti', label: 'eri tüüpi objektid' },
+		],
+	},
+	intro: {
+		kicker: 'Lai teenuste valik',
+		title: 'Ehitame, uuendame ja viime lõpuni.',
+		body:
+			'CORBETTI OÜ pakub üldehitust, kapitaalremonti, fassaaditöid, betooni- ja vundamenditöid, akende ja uste paigaldust, kipsitöid, demonteerimist, puusepatöid ja väiksemaid remonditöid.',
+		badges: ['Eraisikutele', 'Äriklientidele', 'Korteriühistutele', 'Praktiline teostus'],
+	},
+	services: {
+		kicker: 'Põhisuunad',
+		title: 'Teenused, mida CORBETTI OÜ teostab',
+		body: 'Allpool on esile toodud peamised valdkonnad, milles meeskond igapäevaselt töötab.',
+		cards: [
+			{
+				title: 'Majade ehitus ja laiendused',
+				text: 'Terviklikud lahendused eramutele ja väiksematele hoonetele.',
+				items: ['Eramud', 'Saunad ja garaažid', 'Terrassid ja varikatused'],
+			},
+			{
+				title: 'Korterite ja ruumide remont',
+				text: 'Kapitaalremont ja renoveerimine eluruumides, büroodes ning üldkasutatavates pindades.',
+				items: ['Kapitaalremont', 'Korterite uuendamine', 'Äripinnad'],
+			},
+			{
+				title: 'Betoon ja vundament',
+				text: 'Tugevad aluspinnad, valud ja konstruktiivsed lahendused erinevatele objektidele.',
+				items: ['Vundamendi valamine', 'Hüdro- ja soojusisolatsioon', 'Jalgteed ja trepid'],
+			},
+			{
+				title: 'Fassaadid ja soojustus',
+				text: 'Välitööd, kus kohtuvad vastupidavus, energiatõhusus ja korrektne välimus.',
+				items: ['Fassaadi viimistlus', 'Soojusisolatsioon', 'Rõdude soojustus'],
+			},
+			{
+				title: 'Siseviimistlus ja kipsitööd',
+				text: 'Selged lahendused lagedele, vaheseintele, seintele ja põrandatele.',
+				items: ['Ripplaed', 'Vaheseinad', 'Põranda- ja seinaviimistlus'],
+			},
+			{
+				title: 'Demonteerimine ja paigaldus',
+				text: 'Ettevalmistustööd, paigaldus ja väiksemad teostused ühe partneriga.',
+				items: ['Demonteerimine', 'Aknad ja uksed', 'Aiad ja väravad'],
+			},
+		],
+	},
+	clients: {
+		kicker: 'Kellele',
+		title: 'Sobib nii väiksematele kui suurematele objektidele',
+		body: 'Ettevõte töötab paindlikult erinevate tellijate ja projektisuurustega.',
+		cards: [
+			{ title: 'Eraisikud', text: 'Kodud, korterid, terrassid, garaažid ja sihitud remondiprojektid.' },
+			{ title: 'Ärikliendid', text: 'Bürood, äripinnad, tootmisruumid ja etapiviisiline teostus.' },
+			{ title: 'Korteriühistud', text: 'Ühised alad, fassaadid, trepikojad ja tehnilised uuendused.' },
+		],
+	},
+	process: {
+		kicker: 'Kuidas töötame',
+		title: 'Selge tee päringust üleandmiseni',
+		steps: [
+			{ title: '1. Kaardistus', text: 'Arutame vajadused, mahu, tähtajad ja objekti eripärad.' },
+			{ title: '2. Pakkumine', text: 'Koostame selge tööulatuse, etapid ja hinnastuse.' },
+			{ title: '3. Teostus', text: 'Ehitus- või renoveerimistööd liiguvad edasi kokkulepitud etappide järgi.' },
+			{ title: '4. Üleandmine', text: 'Kontrollime tulemuse, viime töö lõpuni ja valmistame objekti kasutuseks ette.' },
+		],
+	},
+	portfolio: {
+		kicker: 'Meie tööd',
+		title: 'CORBETTI OÜ reaalsed objektid',
+		items: [
+			{
+				title: 'Eramu ja peamised ehitusetapid',
+				text: 'Ühe objekti galerii valmisfassaadist trepi ja sisetööde etappideni.',
+				images: portfolioHouseImages,
+			},
+			{
+				title: 'Laed, vaheseinad ja insenerisõlmed',
+				text: 'Töökaadrid lagede, soojustuse, vaheseinte ja tehnosüsteemide ettevalmistusega.',
+				images: portfolioInteriorImages,
+			},
+			{
+				title: 'Fassaadid, avad ja siseviimistlus',
+				text: 'Veel üks galerii CORBETTI OÜ reaalsest tööst koos välisdetailide ja siselahendustega.',
+				images: portfolioFacadeImages,
+			},
+		],
+	},
+	faq: {
+		kicker: 'Küsimused ja vastused',
+		title: 'KKK remondi, viimistluse ja tehnosüsteemide tööde kohta',
+		body: 'Siia on koondatud sagedasemad küsimused elektri-, seinaviimistluse, plaatimise, põrandate, sanitaartehnika ja üldremondi kohta.',
+		categories: [
+			{
+				title: 'Elektritööd',
+				items: [
+					{ question: 'Kuidas pistikupesa õigesti paigaldada?', answer: 'Pistikupesa paigaldamine hõlmab voolu väljalülitamist, juhtmete ettevalmistamist ja nende korrektset ühendamist klemmidega. Veaga töö võib põhjustada lühise või tulekahju, seega on mõistlik see usaldada spetsialistile.' },
+					{ question: 'Kas lülitit võib ise vahetada?', answer: 'Jah, kui olemas on elementaarsed teadmised ja järgitakse ohutusnõudeid. Väiksemagi kahtluse korral tasub siiski kutsuda meister, sest töö on küll väike, kuid vastutusrikas.' },
+					{ question: 'Kuidas aru saada, et juhtmestik on vana ja vajab väljavahetamist?', answer: 'Tüüpilised märgid on välja löövad kaitsmed, kuumenevad pistikupesad, vanad alumiiniumjuhtmed, sädemed või kärsahais. Sellisel juhul ei tasu vahetust edasi lükata.' },
+					{ question: 'Kui palju uus juhtmestik maksab?', answer: 'Hind sõltub pinnast, punktide arvust ja töö keerukusest. Lahendused võivad ulatuda lihtsast eelarvevariandist kuni täieliku võtmed kätte vahetuseni. Täpse hinna saab öelda pärast ülevaatust.' },
+					{ question: 'Kuhu on köögis kõige parem pistikupesad paigutada?', answer: 'Pistikupesad peaksid olema seadmete lähedal: külmik, pliit, veekeetja ja mikrolaineahi. Oluline on piisav arv ette planeerida, et hiljem ei peaks kasutama pikendusjuhtmeid.' },
+					{ question: 'Kui palju pistikupesi on tuppa vaja?', answer: 'Vähemalt 4 kuni 6, kuid enamasti on parem rohkem: teleri, laadijate ja valgustuse jaoks. Tänapäevased korterid vajavad rohkem pistikupesi kui vanad lahendused ette nägid.' },
+					{ question: 'Kuidas juhtmeid seina sisse peita?', answer: 'Juhtmed paigaldatakse seina sisse tehtud soonte sisse ja kaetakse seejärel krohviga. See on tolmune ja tehniliselt nõudlik töö, mis vajab tööriistu ja kogemust.' },
+				],
+			},
+			{
+				title: 'Seinaviimistlus',
+				items: [
+					{ question: 'Kuidas seinad värvimiseks ette valmistada?', answer: 'Vana kate tuleb eemaldada, pind tasandada, pahteldada ja kruntida. Ilma ettevalmistuseta ei jää värv ühtlane.' },
+					{ question: 'Kas enne värvimist tuleb seinad kruntida?', answer: 'Jah, kindlasti. Krunt parandab nakkumist ja vähendab värvikulu.' },
+					{ question: 'Kuidas seinu õigesti pahteldada?', answer: 'Pahtlit kantakse tavaliselt mitmes kihis ja kihtide vahel lihvitakse. Tähtis on hoida pind sirge ja kihi paksus kontrolli all.' },
+					{ question: 'Kuidas pahtlit tükivabalt segada?', answer: 'Pulber valatakse vette, mitte vastupidi, ja segatakse mikseriga. Tähtis on jälgida õigeid proportsioone.' },
+					{ question: 'Mitu pahtlikihti on vaja?', answer: 'Tavaliselt 2 kuni 3 kihti: aluskiht ja viimistluskiht. Täpne arv sõltub seinte seisukorrast.' },
+					{ question: 'Kuidas seinu tasandada?', answer: 'Suuremad ebatasasused parandatakse krohviga, väiksemad pahtliga. Mõnel juhul kasutatakse ka kipsplaadisüsteeme.' },
+					{ question: 'Kumb on parem: tapeet või värv?', answer: 'Värv mõjub kaasaegselt ja seda on lihtne hiljem värskendada. Tapeet peidab väiksemaid puudusi lihtsamini. Valik sõltub eelarvest ja eesmärgist.' },
+				],
+			},
+			{
+				title: 'Plaatimine',
+				items: [
+					{ question: 'Kuidas plaate sirgelt paigaldada?', answer: 'Aluspind peab olema tasane ning vaja on kasutada loodi ja vuugiriste. Kogemuseta on väga keeruline saavutada tõeliselt puhas tulemus.' },
+					{ question: 'Kuidas valida vannituppa plaate?', answer: 'Oluline on jälgida niiskuskindlust, libisemiskindlust ja vastupidavust.' },
+					{ question: 'Kuidas lõigata plaati ilma kildudeta?', answer: 'Selleks kasutatakse plaadilõikurit või muud sobivat tööriista. Ilma selleta on materjali lihtne rikkuda.' },
+					{ question: 'Kui palju plaatimine maksab?', answer: 'Hind sõltub plaadi mõõdust, ladumise keerukusest ja aluspinna ettevalmistusest. Tavaliselt arvestatakse ruutmeetri alusel.' },
+					{ question: 'Mida teha, kui plaat on lahti tulnud?', answer: 'Vana liim tuleb eemaldada, pind puhastada ja plaat uuesti kinnitada. Kui probleem on laiem, võib vaja minna suuremat ümbertegemist.' },
+				],
+			},
+			{
+				title: 'Põrandad',
+				items: [
+					{ question: 'Kumb põrand on parem: laminaat või plaat?', answer: 'Laminaat on soojem ja hubasem, plaat vastupidavam ja niiskuskindlam. Sageli annab parima tulemuse nende kahe kombinatsioon.' },
+					{ question: 'Kuidas laminaati paigaldada?', answer: 'Laminaat paigaldatakse tasasele aluspinnale koos aluskattega ning seinte äärde jäetakse paisumisvahe. Vale paigaldus võib hiljem põhjustada pundumist.' },
+					{ question: 'Kas enne põranda paigaldust tuleb põrand tasandada?', answer: 'Jah. Ebatasasused põhjustavad kriuksumist ja võivad viia kahjustusteni.' },
+					{ question: 'Mida teha, kui põrand kriuksub?', answer: 'Põhjus on enamasti ebaühtlases aluspinnas või halvas paigalduses. Vajalik võib olla osaline või täielik remont.' },
+					{ question: 'Kuidas valida põrandakütet?', answer: 'On olemas elektriline ja vesipõhine põrandaküte. Valik sõltub ruumist ja eelarvest.' },
+				],
+			},
+			{
+				title: 'Sanitaartehnika',
+				items: [
+					{ question: 'Kuidas WC-potti paigaldada?', answer: 'Vajalik on täpne ühendus kanalisatsiooniga ja korrektne tihendamine. Veaga paigaldus võib põhjustada lekkeid.' },
+					{ question: 'Kuidas segistit vahetada?', answer: 'Vesi tuleb sulgeda, vana segisti eemaldada ja uus koos tihendusega paigaldada. Töö ei ole väga keeruline, kuid nõuab hoolikust.' },
+					{ question: 'Miks kraan lekib ja mida teha?', answer: 'Kõige sagedamini on kulunud tihendid või kassett. Need detailid tuleb välja vahetada.' },
+					{ question: 'Kuidas torusid puhastada?', answer: 'Kergemate ummistuste puhul võivad aidata kodused vahendid, kuid tõsisema probleemi korral tasub kutsuda spetsialist.' },
+					{ question: 'Kui palju sanitaartehnika vahetus maksab?', answer: 'See sõltub töö mahust ja valitud seadmetest. Hind kujuneb individuaalselt.' },
+				],
+			},
+			{
+				title: 'Üldremont',
+				items: [
+					{ question: 'Millest alustada korteri remonti?', answer: 'Alustada tuleks plaanist ja eelarvest. Kõik etapid tasub enne tööde algust läbi mõelda.' },
+					{ question: 'Mis järjekorras remonti teha?', answer: 'Kõigepealt tehakse mustad tööd ja seejärel viimistlus: seinad, põrand ja lagi.' },
+					{ question: 'Kas remonti võib teha talvel?', answer: 'Jah, kuid osa materjale ja temperatuuritingimusi seab piiranguid.' },
+					{ question: 'Kui palju võtmed kätte remont maksab?', answer: 'Hind sõltub korteri seisukorrast ja tööde soovitud ulatusest. Täpne maksumus selgub pärast ülevaatust.' },
+					{ question: 'Kuidas valida ehitusfirmat?', answer: 'Tasub vaadata kogemust, tagasisidet, lepingutingimusi ja garantiid.' },
+				],
+			},
+			{
+				title: 'Kasulikud väiketööd',
+				items: [
+					{ question: 'Kuidas riiulit seinale kinnitada?', answer: 'Tuleb valida seina tüübi jaoks õiged kinnitused ja märkida avad täpselt enne puurimist.' },
+					{ question: 'Kuidas seina puurida nii, et pragusid ei tekiks?', answer: 'Kasuta sobivat puuriotsa ja väldi liigset survet.' },
+					{ question: 'Kuidas seinapragu parandada?', answer: 'Puhasta pragu, krundi see ja täida pahtliga.' },
+					{ question: 'Kuidas eemaldada vana tapeeti?', answer: 'Tapeet tuleb niisutada vee või spetsiaalse lahusega ja eemaldada pahtlilabidaga.' },
+					{ question: 'Kuidas värvida lage ilma triipudeta?', answer: 'Kasuta kvaliteetset rulli ja kanna värvi ühtlaselt mitmes kihis.' },
+				],
+			},
+		],
+	},
+	contact: {
+		kicker: 'Võtke ühendust',
+		title: 'Arutame teie järgmist objekti',
+		body: 'Kirjeldage töö asukohta, mahtu ja soovitud tähtaega. CORBETTI OÜ võtab päringuid vastu telefoni ja Telegrami kaudu.',
+		emailLabel: 'E-post',
+		email: 'corbetti.group@gmail.com',
+		emailAction: 'Kirjuta e-postiga',
+		primaryAction: 'Helista',
+		primaryHref: 'tel:+37256333338',
+		secondaryAction: 'Kirjuta Telegramis',
+		secondaryHref: 'https://t.me/corbetti_build',
+		form: {
+			title: 'Päringuvorm',
+			nameLabel: 'Nimi',
+			phoneLabel: 'Telefon',
+			locationLabel: 'Objekti aadress',
+			workTypeLabel: 'Töö tüüp',
+			messageLabel: 'Kirjeldage tööd',
+			submitLabel: 'Saada Telegrami',
+			submittingLabel: 'Saatmine...',
+			successMessage: 'Päring on saadetud. Võtame teiega peagi ühendust.',
+			errorMessage: 'Päringu saatmine ebaõnnestus. Proovige uuesti või kirjutage Telegramis.',
+			telegramNotice: 'Vorm saadab päringu otse Telegrami.',
+		},
+		cards: [
+			{ label: 'Telefon', value: '+372 5633 3338' },
+			{ label: 'Telegram', value: '@corbetti_build' },
+			{ label: 'Keeled', value: 'Eesti, русский, English, Suomi, Svenska' },
+			{ label: 'Kliendid', value: 'Eraisikud, ettevõtted, korteriühistud' },
+			{ label: 'Fookus', value: 'Ehitus, remont, fassaadid, betoon, siseviimistlus' },
+		],
+		note: 'Kiireima vastuse saamiseks lisage Telegrami sõnumisse lühike kirjeldus, aadress ja soovitud ajakava.',
+	},
+	footer: {
+		company: 'CORBETTI OÜ',
+		rights: 'Mitmekeelne ehitus- ja renoveerimispartner.',
+	},
+};
