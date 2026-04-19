@@ -271,10 +271,14 @@ const clientCardImages = [
 					<div class="catalog-heading reveal">
 						<p class="section-kicker">{content.faq.kicker}</p>
 					</div>
-					<div class="faq-intro reveal">
-						<h2>{content.faq.title}</h2>
-						<p class="section-text">{content.faq.body}</p>
-					</div>
+					{
+						(content.faq.title || content.faq.body) && (
+							<div class="faq-intro reveal">
+								{content.faq.title && <h2>{content.faq.title}</h2>}
+								{content.faq.body && <p class="section-text">{content.faq.body}</p>}
+							</div>
+						)
+					}
 					<div class="faq-grid">
 						{
 							content.faq.categories.map((category, categoryIndex) => (

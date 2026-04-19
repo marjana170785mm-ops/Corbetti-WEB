@@ -114,8 +114,8 @@ export const en: PageContent = {
 	},
 	faq: {
 		kicker: 'Questions and answers',
-		title: 'FAQ about renovation, finishing and utility work',
-		body: 'Short answers to the questions clients ask most often before electrical, finishing, tiling, flooring, plumbing and general renovation work.',
+		title: '',
+		body: '',
 		categories: [
 			{
 				title: 'Electrical',

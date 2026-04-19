@@ -114,8 +114,8 @@ export const sv: PageContent = {
 	},
 	faq: {
 		kicker: 'Frågor och svar',
-		title: 'Vanliga frågor om renovering, finish och tekniska arbeten',
-		body: 'Här finns korta svar på vanliga kundfrågor om el, väggfinish, kakel, golv, VVS och allmän renovering.',
+		title: '',
+		body: '',
 		categories: [
 			{
 				title: 'El',

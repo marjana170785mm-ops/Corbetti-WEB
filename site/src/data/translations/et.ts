@@ -114,8 +114,8 @@ export const et: PageContent = {
 	},
 	faq: {
 		kicker: 'Küsimused ja vastused',
-		title: 'KKK remondi, viimistluse ja tehnosüsteemide tööde kohta',
-		body: 'Siia on koondatud sagedasemad küsimused elektri-, seinaviimistluse, plaatimise, põrandate, sanitaartehnika ja üldremondi kohta.',
+		title: '',
+		body: '',
 		categories: [
 			{
 				title: 'Elektritööd',
