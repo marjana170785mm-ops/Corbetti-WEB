@@ -1,0 +1,28 @@
+{
+  "reviews": [
+    {
+      "id": "50209735-3aad-46da-93b3-4c9fb9bc159b",
+      "name": "Marina",
+      "message": "Делали ремонт лоджии. Приехали на место, оценили, сами съездили в магазин и всё купили. Очень приветливый и приятный мастер! Всё быстро сделал. Получилось очень тепло, качественно, красиво и что самое главное, по цене приятно. Рекомендую!!!",
+      "rating": 5,
+      "locale": "ru",
+      "createdAt": "2026-04-24T08:37:16.552Z"
+    },
+    {
+      "id": "seed-anna-elina",
+      "name": "Anna-Elina O.",
+      "message": "Suur aitah tegijale hea too eest. Soovitan tegijat teistele klientidele.",
+      "locale": "et",
+      "rating": 5,
+      "createdAt": "2024-04-24T10:00:00.000Z"
+    },
+    {
+      "id": "seed-andrei",
+      "name": "Andrei",
+      "message": "Suureparane professionaalide meeskond, soovitan. Otlichnaya komanda professionalov, rekomenduyu.",
+      "locale": "ru",
+      "rating": 5,
+      "createdAt": "2024-04-17T10:00:00.000Z"
+    }
+  ]
+}

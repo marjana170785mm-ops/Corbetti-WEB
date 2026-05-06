@@ -1,6 +1,7 @@
 .venv/
 exports/
 memory/
+toljan/
 
 site/node_modules/
 site/dist/

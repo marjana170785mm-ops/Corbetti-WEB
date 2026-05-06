@@ -1,5 +1,17 @@
 import type { PageContent } from '../types';
-import { portfolioFacadeImages, portfolioHouseImages, portfolioInteriorImages } from '../portfolio-images';
+import {
+	portfolioConcreteImages,
+	portfolioDemolitionImages,
+	portfolioFacadeImages,
+	portfolioFloorRepairImages,
+	portfolioHeatBoxImages,
+	portfolioHouseImages,
+	portfolioPremisesRepairImages,
+	portfolioRegipsImages,
+	portfolioScaffoldImages,
+	portfolioToljanImages,
+	portfolioWindowInstallImages,
+} from '../portfolio-images';
 
 export const et: PageContent = {
 	langLabel: 'EE',
@@ -7,6 +19,7 @@ export const et: PageContent = {
 	metaDescription:
 		'CORBETTI OÜ teostab ehitus-, renoveerimis-, fassaadi-, betooni- ja siseviimistlustöid eraisikutele, äriklientidele ja korteriühistutele.',
 	nav: {
+		home: 'Avaleht',
 		services: 'Teenused',
 		portfolio: 'Portfoolio',
 		process: 'Protsess',
@@ -21,6 +34,7 @@ export const et: PageContent = {
 			'Teostame ehitus-, renoveerimis- ja siseviimistlustöid algusest lõpuni. Töötame eraisikute, ettevõtete ja korteriühistutega.',
 		primaryCta: 'Saada päring',
 		secondaryCta: 'Vaata töid',
+		stamp: 'Üle 15 aasta ehituskogemust',
 		stats: [
 			{ value: 'B2C / B2B', label: 'eraisikud ja ärikliendid' },
 			{ value: 'Täislahendus', label: 'projektist viimistluseni' },
@@ -81,6 +95,44 @@ export const et: PageContent = {
 			{ title: 'Korteriühistud', text: 'Ühised alad, fassaadid, trepikojad ja tehnilised uuendused.' },
 		],
 	},
+	reviews: {
+		kicker: 'Tagasiside',
+		title: '',
+		body: '',
+		sourceLabel: '',
+		actionLabel: 'Jäta tagasiside',
+		stats: [
+			{ value: '5.0 / 5', label: 'keskmine hinne' },
+			{ value: '100%', label: 'positiivsed hinnangud' },
+			{ value: '2', label: 'avalikku tagasisidet' },
+		],
+		items: [
+			{
+				author: 'Anna-Elina O.',
+				task: 'Köögilambi riputamine',
+				time: '2 aastat tagasi',
+				quote: 'Suur aitäh tegijale hea töö eest. Soovitan tegijat teistele klientidele.',
+			},
+			{
+				author: 'Andrei',
+				task: 'Muu',
+				time: '2 aastat tagasi',
+				quote: 'Suurepärane professionaalide meeskond, soovitan. Отличьная команда проффесионалов ,рекомендую',
+			},
+		],
+		form: {
+			title: 'Jäta tagasiside',
+			nameLabel: 'Teie nimi',
+			ratingLabel: 'Hinne',
+			messageLabel: 'Teie tagasiside',
+			submitLabel: 'Saada tagasiside',
+			submittingLabel: 'Saadame...',
+			successMessage: 'Aitäh. Teie tagasiside on saadetud.',
+			errorMessage: 'Tagasiside saatmine ebaõnnestus. Proovige uuesti.',
+			successTitle: 'Aitäh tagasiside eest',
+			successBody: 'Saatsite tagasiside edukalt ja vaatame selle peagi üle.',
+		},
+	},
 	process: {
 		kicker: 'Kuidas töötame',
 		title: 'Selge tee päringust üleandmiseni',
@@ -90,25 +142,72 @@ export const et: PageContent = {
 			{ title: '3. Teostus', text: 'Ehitus- või renoveerimistööd liiguvad edasi kokkulepitud etappide järgi.' },
 			{ title: '4. Üleandmine', text: 'Kontrollime tulemuse, viime töö lõpuni ja valmistame objekti kasutuseks ette.' },
 		],
+		certificates: {
+			title: 'Meie sertifikaadid',
+			items: [
+				{ name: 'Arbetssakerhetskort', number: '1489679211460' },
+				{ name: 'Hot Work Certificate', number: '12204841124304' },
+			],
+		},
 	},
 	portfolio: {
 		kicker: 'Meie tööd',
 		title: 'CORBETTI OÜ reaalsed objektid',
 		items: [
 			{
-				title: 'Eramu ja peamised ehitusetapid',
-				text: 'Ühe objekti galerii valmisfassaadist trepi ja sisetööde etappideni.',
+				title: 'Eramu: ehituse etapid',
+				text: '',
 				images: portfolioHouseImages,
 			},
 			{
-				title: 'Laed, vaheseinad ja insenerisõlmed',
-				text: 'Töökaadrid lagede, soojustuse, vaheseinte ja tehnosüsteemide ettevalmistusega.',
-				images: portfolioInteriorImages,
+				title: 'Fassaaditööd',
+				text: '',
+				images: portfolioFacadeImages,
 			},
 			{
-				title: 'Fassaadid, avad ja siseviimistlus',
-				text: 'Veel üks galerii CORBETTI OÜ reaalsest tööst koos välisdetailide ja siselahendustega.',
-				images: portfolioFacadeImages,
+				title: 'Teenused ehitustellingutega',
+				text: '',
+				images: portfolioScaffoldImages,
+			},
+			{
+				title: 'Akende paigaldus',
+				text: '',
+				images: portfolioWindowInstallImages,
+			},
+			{
+				title: 'Betoonitööd',
+				text: '',
+				images: portfolioConcreteImages,
+			},
+			{
+				title: 'Demonteerimistööd',
+				text: '',
+				images: portfolioDemolitionImages,
+			},
+			{
+				title: 'Soojasõlme kappide paigaldus',
+				text: '',
+				images: portfolioHeatBoxImages,
+			},
+			{
+				title: 'Ruumide remont',
+				text: '',
+				images: portfolioPremisesRepairImages,
+			},
+			{
+				title: 'Põranda remont',
+				text: '',
+				images: portfolioFloorRepairImages,
+			},
+			{
+				title: 'Regipsitööd',
+				text: '',
+				images: portfolioRegipsImages,
+			},
+			{
+				title: 'Ehituse ja viimistluse etapid',
+				text: '',
+				images: portfolioToljanImages,
 			},
 		],
 	},
@@ -195,8 +294,10 @@ export const et: PageContent = {
 	},
 	contact: {
 		kicker: 'Võtke ühendust',
-		title: 'Arutame teie järgmist objekti',
-		body: 'Kirjeldage töö asukohta, mahtu ja soovitud tähtaega. CORBETTI OÜ võtab päringuid vastu telefoni ja Telegrami kaudu.',
+		title: 'Pakkumise saamiseks helistage või saatke päring',
+		body: 'Kirjeldage töö tüüpi, objekti aadressi ja soovitud tähtaega. CORBETTI OÜ võtab päringuid vastu telefoni, Telegrami ja e-posti kaudu.',
+		phoneLabel: 'Telefon',
+		phone: '+37256333338',
 		emailLabel: 'E-post',
 		email: 'corbetti.group@gmail.com',
 		emailAction: 'Kirjuta e-postiga',
@@ -220,7 +321,7 @@ export const et: PageContent = {
 		cards: [
 			{ label: 'Telefon', value: '+372 5633 3338' },
 			{ label: 'Telegram', value: '@corbetti_build' },
-			{ label: 'Keeled', value: 'Eesti, русский, English, Suomi, Svenska' },
+			{ label: 'Keeled', value: 'Eesti, русский, English, Svenska' },
 			{ label: 'Kliendid', value: 'Eraisikud, ettevõtted, korteriühistud' },
 			{ label: 'Fookus', value: 'Ehitus, remont, fassaadid, betoon, siseviimistlus' },
 		],

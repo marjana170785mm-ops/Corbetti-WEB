@@ -1,5 +1,17 @@
 import type { PageContent } from '../types';
-import { portfolioFacadeImages, portfolioHouseImages, portfolioInteriorImages } from '../portfolio-images';
+import {
+	portfolioConcreteImages,
+	portfolioDemolitionImages,
+	portfolioFacadeImages,
+	portfolioFloorRepairImages,
+	portfolioHeatBoxImages,
+	portfolioHouseImages,
+	portfolioPremisesRepairImages,
+	portfolioRegipsImages,
+	portfolioScaffoldImages,
+	portfolioToljanImages,
+	portfolioWindowInstallImages,
+} from '../portfolio-images';
 
 export const en: PageContent = {
 	langLabel: 'EN',
@@ -7,6 +19,7 @@ export const en: PageContent = {
 	metaDescription:
 		'CORBETTI OÜ delivers construction, renovation, facade, concrete and interior finishing services for private clients, businesses and apartment associations.',
 	nav: {
+		home: 'Home',
 		services: 'Services',
 		portfolio: 'Portfolio',
 		process: 'Process',
@@ -21,6 +34,7 @@ export const en: PageContent = {
 			'We handle full-scope building work for homeowners, companies and apartment associations with clear communication and practical execution.',
 		primaryCta: 'Start an inquiry',
 		secondaryCta: 'View projects',
+		stamp: 'Over 15 years of construction experience',
 		stats: [
 			{ value: 'B2C / B2B', label: 'private and business clients' },
 			{ value: 'Full scope', label: 'from prep to finish' },
@@ -81,6 +95,44 @@ export const en: PageContent = {
 			{ title: 'Apartment associations', text: 'Shared areas, facades, stairwells and building upgrades.' },
 		],
 	},
+	reviews: {
+		kicker: 'Reviews',
+		title: '',
+		body: '',
+		sourceLabel: '',
+		actionLabel: 'Leave a review',
+		stats: [
+			{ value: '5.0 / 5', label: 'average rating' },
+			{ value: '100%', label: 'positive reviews' },
+			{ value: '2', label: 'public reviews' },
+		],
+		items: [
+			{
+				author: 'Anna-Elina O.',
+				task: 'Kitchen lamp installation',
+				time: '2 years ago',
+				quote: 'Suur aitäh tegijale hea töö eest. Soovitan tegijat teistele klientidele.',
+			},
+			{
+				author: 'Andrei',
+				task: 'Other work',
+				time: '2 years ago',
+				quote: 'Suurepärane professionaalide meeskond, soovitan. Отличьная команда проффесионалов ,рекомендую',
+			},
+		],
+		form: {
+			title: 'Leave a review',
+			nameLabel: 'Your name',
+			ratingLabel: 'Rating',
+			messageLabel: 'Your review',
+			submitLabel: 'Send review',
+			submittingLabel: 'Sending...',
+			successMessage: 'Thank you. Your review has been sent.',
+			errorMessage: 'Could not send the review. Please try again.',
+			successTitle: 'Thank you for your review',
+			successBody: 'We received your message and will look at the review soon.',
+		},
+	},
 	process: {
 		kicker: 'How we work',
 		title: 'A straightforward path from inquiry to handover',
@@ -90,25 +142,72 @@ export const en: PageContent = {
 			{ title: '3. Execution', text: 'Construction and renovation work moves forward in agreed stages.' },
 			{ title: '4. Completion', text: 'We review the result, finish the details and prepare the site for use.' },
 		],
+		certificates: {
+			title: 'Our certificates',
+			items: [
+				{ name: 'Arbetssakerhetskort', number: '1489679211460' },
+				{ name: 'Hot Work Certificate', number: '12204841124304' },
+			],
+		},
 	},
 	portfolio: {
 		kicker: 'Our work',
 		title: 'Real CORBETTI OÜ projects from the GetaPro portfolio',
 		items: [
 			{
-				title: 'Private house and key construction stages',
-				text: 'One project shown through ten frames, from the exterior to stairs and interior progress.',
+				title: 'Private house: construction stages',
+				text: '',
 				images: portfolioHouseImages,
 			},
 			{
-				title: 'Ceilings, partitions and engineering details',
-				text: 'A gallery of working moments focused on ceiling systems, insulation, partitions and technical preparation.',
-				images: portfolioInteriorImages,
+				title: 'Facade works',
+				text: '',
+				images: portfolioFacadeImages,
 			},
 			{
-				title: 'Exterior details, openings and interior finish',
-				text: 'Another project block with facade elements, openings and more advanced interior stages.',
-				images: portfolioFacadeImages,
+				title: 'Scaffolding services',
+				text: '',
+				images: portfolioScaffoldImages,
+			},
+			{
+				title: 'Window installation',
+				text: '',
+				images: portfolioWindowInstallImages,
+			},
+			{
+				title: 'Concrete works',
+				text: '',
+				images: portfolioConcreteImages,
+			},
+			{
+				title: 'Demolition works',
+				text: '',
+				images: portfolioDemolitionImages,
+			},
+			{
+				title: 'Heat substation box installation',
+				text: '',
+				images: portfolioHeatBoxImages,
+			},
+			{
+				title: 'Premises renovation',
+				text: '',
+				images: portfolioPremisesRepairImages,
+			},
+			{
+				title: 'Floor repair',
+				text: '',
+				images: portfolioFloorRepairImages,
+			},
+			{
+				title: 'Drywall works',
+				text: '',
+				images: portfolioRegipsImages,
+			},
+			{
+				title: 'Construction and finishing stages',
+				text: '',
+				images: portfolioToljanImages,
 			},
 		],
 	},
@@ -195,8 +294,10 @@ export const en: PageContent = {
 	},
 	contact: {
 		kicker: 'Next step',
-		title: 'Ready to discuss your project',
-		body: 'Share the location, work type and target timeline. CORBETTI OÜ accepts inquiries by phone and Telegram.',
+		title: 'Call us or send an inquiry for an offer',
+		body: 'Share the work type, site address and preferred timeline. CORBETTI OÜ accepts inquiries by phone, Telegram and e-mail.',
+		phoneLabel: 'Phone',
+		phone: '+37256333338',
 		emailLabel: 'Email',
 		email: 'corbetti.group@gmail.com',
 		emailAction: 'Write by email',
@@ -220,7 +321,7 @@ export const en: PageContent = {
 		cards: [
 			{ label: 'Phone', value: '+372 5633 3338' },
 			{ label: 'Telegram', value: '@corbetti_build' },
-			{ label: 'Languages', value: 'Eesti, Russian, English, Suomi, Svenska' },
+			{ label: 'Languages', value: 'Eesti, русский, English, Svenska' },
 			{ label: 'Client types', value: 'Private clients, businesses, apartment associations' },
 			{ label: 'Focus', value: 'Construction, renovation, facades, concrete, interiors' },
 		],

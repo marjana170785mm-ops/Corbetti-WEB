@@ -20,6 +20,7 @@ export const fi: PageContent = {
 			'Toteutamme rakentamisen, remontoinnin ja sisätyöt alusta loppuun yksityisasiakkaille, yrityksille ja taloyhtiöille.',
 		primaryCta: 'Lähetä kysely',
 		secondaryCta: 'Katso työt',
+		stamp: 'Yli 15 vuotta rakennuskokemusta',
 		stats: [
 			{ value: 'B2C / B2B', label: 'yksityiset ja yritykset' },
 			{ value: 'Kokonaisuus', label: 'valmistelusta viimeistelyyn' },
@@ -114,7 +115,7 @@ export const fi: PageContent = {
 	contact: {
 		kicker: 'Seuraava kohde',
 		title: 'Keskustellaan projektistasi',
-		body: 'Kerro kohteen sijainti, työn tyyppi ja aikataulu. CORBETTI OÜ vastaanottaa yhteydenotot puhelimitse ja Telegramissa.',
+		body: 'Kerro kohteen sijainti, työn tyyppi ja aikataulu. CORBETTI OÜ vastaanottaa yhteydenotot puhelimitse, Telegramissa ja sähköpostitse.',
 		primaryAction: 'Soita',
 		primaryHref: 'tel:+37256333338',
 		secondaryAction: 'Kirjoita Telegramissa',

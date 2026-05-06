@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { localeNames, locales, siteContent, type Locale } from '../../data/site';
+import { locales, siteContent, type Locale } from '../../data/site';
 
 export function getStaticPaths() {
 	return locales.map((lang) => ({ params: { lang } }));
@@ -17,6 +17,8 @@ const alternates = locales.map((locale) => ({
 	lang: locale,
 	href: `/${locale}/`,
 }));
+const emailAddress = content.contact.email;
+const mailtoHref = `mailto:${emailAddress}`;
 
 const processCardImages = [
 	'/images/corbetti/getapro-house-frame-01.jpg',
@@ -30,6 +32,13 @@ const clientCardImages = [
 	'/images/corbetti/getapro-windows-12.jpg',
 	'/images/corbetti/getapro-facade-b-03.jpg',
 ];
+
+const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
+	id: `static-${index}`,
+	name: item.author,
+	message: item.quote,
+	rating: 5,
+}));
 ---
 
 <BaseLayout
@@ -42,7 +51,15 @@ const clientCardImages = [
 		<header class="site-header">
 			<div class="container header-inner">
 				<a class="brand" href={`/${lang}/`}>
-					<span class="brand-mark">C</span>
+					<span class="brand-mark" aria-hidden="true">
+						<img
+							src="/images/corbetti/branding/corbetti-mark-c-web-v3.png"
+							alt=""
+							class="brand-mark-image"
+							loading="eager"
+							decoding="async"
+						/>
+					</span>
 					<span class="brand-copy">
 						<strong>CORBETTI OÜ</strong>
 						<small>{content.hero.eyebrow}</small>
@@ -50,6 +67,7 @@ const clientCardImages = [
 				</a>
 
 				<nav class="main-nav" aria-label="Primary">
+					<a href="#top">{content.nav.home}</a>
 					<a href="#services">{content.nav.services}</a>
 					<a href="#process">{content.nav.process}</a>
 					<a href="#clients">{content.nav.clients}</a>
@@ -57,6 +75,8 @@ const clientCardImages = [
 					<a href="#faq">{content.nav.faq}</a>
 					<a href="#contact">{content.nav.contact}</a>
 				</nav>
+
+				<a class="header-phone" href="tel:+37256333338">+372 5633 3338</a>
 
 				<div class="language-switcher" aria-label="Languages">
 					{
@@ -67,6 +87,7 @@ const clientCardImages = [
 						))
 					}
 				</div>
+
 			</div>
 		</header>
 
@@ -74,7 +95,7 @@ const clientCardImages = [
 			<section class="hero-section">
 				<div class="container">
 					<div class="hero-shell reveal">
-						<img src="/images/corbetti/getapro-house-cover.jpg" alt="Corbetti OГњ project" class="hero-bg-image" />
+						<img src="/images/corbetti/getapro-house-cover.jpg" alt="Corbetti OÜ project" class="hero-bg-image" />
 						<div class="hero-overlay"></div>
 						<div class="hero-copy hero-copy-centered">
 							<p class="section-kicker section-kicker-light">{content.hero.eyebrow}</p>
@@ -84,6 +105,11 @@ const clientCardImages = [
 								<a class="button button-primary" href="#contact">{content.hero.primaryCta}</a>
 								<a class="button button-secondary button-secondary-dark" href="#portfolio">{content.hero.secondaryCta}</a>
 							</div>
+						</div>
+
+						<div class="hero-experience-stamp" aria-label={content.hero.stamp}>
+							<span>15+</span>
+							<strong>{content.hero.stamp}</strong>
 						</div>
 
 						<div class="hero-stats hero-stats-overlay">
@@ -97,18 +123,17 @@ const clientCardImages = [
 							}
 						</div>
 
-						<div class="hero-badge">
-							<strong>{localeNames[lang]}</strong>
-						</div>
 					</div>
 				</div>
 			</section>
 
 			<section class="intro-section">
-				<div class="container intro-panel">
+				<div class="container">
 					<div class="catalog-heading reveal">
 						<p class="section-kicker">{content.intro.kicker}</p>
 					</div>
+				</div>
+				<div class="container intro-panel">
 					<div class="reveal">
 						<p class="section-text intro-body">{content.intro.body}</p>
 						<div class="badge-row">
@@ -177,6 +202,25 @@ const clientCardImages = [
 							))
 						}
 					</div>
+					{
+						content.process.certificates && (
+							<div class="process-certificates reveal">
+								<div class="process-certificates-head">
+									<p class="section-kicker process-certificates-kicker">{content.process.certificates.title}</p>
+								</div>
+								<div class="process-certificates-grid">
+									{
+										content.process.certificates.items.map((certificate) => (
+											<article class="process-certificate-card">
+												<strong>{certificate.name}</strong>
+												<span>{certificate.number}</span>
+											</article>
+										))
+									}
+								</div>
+							</div>
+						)
+					}
 				</div>
 			</section>
 
@@ -203,6 +247,63 @@ const clientCardImages = [
 				</div>
 			</section>
 
+			{
+				content.reviews && (
+					<section class="reviews-section">
+						<div class="container">
+							<div class="catalog-heading reveal">
+								<p class="section-kicker">{content.reviews.kicker}</p>
+							</div>
+							<div class="reviews-shell reveal">
+								<div class="reviews-summary">
+									<div class="reviews-headline">
+										<div class="reviews-rating-block">
+											<strong class="reviews-rating-value" data-reviews-rating-value>{content.reviews.stats[0]?.value ?? '5.0 / 5'}</strong>
+											<span class="reviews-rating-label" data-reviews-rating-label>{content.reviews.stats[0]?.label}</span>
+											<div class="reviews-rating-inline">
+												<span class="review-stars reviews-summary-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+												<button type="button" class="reviews-count-button" data-reviews-toggle aria-expanded="false">
+													({content.reviews.items.length})
+												</button>
+											</div>
+										</div>
+									</div>
+									<div class="reviews-stats">
+										<div class="reviews-stat-card reviews-stat-card-accent">
+											<strong>{content.reviews.stats[1]?.value ?? '100%'}</strong>
+											<span>{content.reviews.stats[1]?.label}</span>
+										</div>
+									</div>
+									<button
+										type="button"
+										class="button button-primary reviews-action"
+										data-review-open
+									>
+										{content.reviews.actionLabel}
+									</button>
+								</div>
+
+								<div class="reviews-grid" data-reviews-panel data-initial-reviews={JSON.stringify(initialReviews)}>
+									{
+										content.reviews.items.map((item, index) => (
+											<article class="review-card" style={`--delay:${index * 90}ms`}>
+												<div class="review-card-topline">
+													<div>
+														<h3>{item.author}</h3>
+													</div>
+													<span class="review-stars" aria-label="5 out of 5 stars">★★★★★</span>
+												</div>
+												<p class="review-quote">{item.quote}</p>
+											</article>
+										))
+									}
+								</div>
+							</div>
+						</div>
+					</section>
+				)
+			}
+
 			<section class="portfolio-section" id="portfolio">
 				<div class="container">
 					<div class="catalog-heading reveal">
@@ -213,52 +314,69 @@ const clientCardImages = [
 						{
 							content.portfolio.items.map((item, itemIndex) => (
 								<article class="portfolio-project reveal" style={`--delay:${itemIndex * 110}ms`}>
-									<div class="portfolio-project-copy">
-										<span class="portfolio-project-index">0{itemIndex + 1}</span>
-										<h3>{item.title}</h3>
-										{item.text && <p>{item.text}</p>}
-									</div>
-									<div class="portfolio-gallery-compact" aria-label={item.title}>
-										{
-											item.images[0] && (
+									{(() => {
+										const galleryGroup = `project-${itemIndex}`;
+										const firstImage = item.images[0];
+										const coverImage = item.coverImage ?? item.images[item.images.length - 1] ?? item.images[0];
+										return (
+											<>
 												<button
 													type="button"
-													class="portfolio-gallery-cover"
-													data-gallery-group={`project-${itemIndex}`}
-													data-gallery-image={item.images[0]}
-													data-gallery-title={item.title}
-													data-gallery-caption={`${item.title} 1`}
-													aria-label={`${item.title} 1`}
+													class="portfolio-folder"
+													data-gallery-open-group={galleryGroup}
+													data-gallery-open-index="0"
+													aria-label={item.title}
 												>
-													<img
-														src={item.images[0]}
-														alt={`${item.title} 1`}
-														loading="lazy"
-														class="portfolio-gallery-image"
-													/>
-													<span class="portfolio-gallery-count">
-														+{Math.max(item.images.length - 1, 0)}
-													</span>
+													<div class="portfolio-folder-copy">
+														<div class="portfolio-folder-topline">
+															<span class="portfolio-project-index">0{itemIndex + 1}</span>
+															<span class="portfolio-folder-count">{item.images.length}</span>
+														</div>
+														<h3>{item.title}</h3>
+														{item.text && <p>{item.text}</p>}
+													</div>
+													<div class="portfolio-folder-preview">
+														{
+															coverImage && (
+																<img
+																	src={coverImage}
+																	alt={item.title}
+																	loading="lazy"
+																	class="portfolio-folder-cover"
+																/>
+															)
+														}
+														{
+															firstImage && (
+																<img
+																	src={firstImage}
+																	alt={item.title}
+																	loading="lazy"
+																	class="portfolio-folder-start"
+																/>
+															)
+														}
+													</div>
 												</button>
-											)
-										}
-										<div class="portfolio-gallery-hidden" aria-hidden="true">
-											{
-												item.images.slice(1).map((image, imageIndex) => (
-													<button
-														type="button"
-														class="portfolio-gallery-hidden-tile"
-														tabindex="-1"
-														data-gallery-group={`project-${itemIndex}`}
-														data-gallery-image={image}
-														data-gallery-title={item.title}
-														data-gallery-caption={`${item.title} ${imageIndex + 2}`}
-														aria-hidden="true"
-													/>
-												))
-											}
-										</div>
-									</div>
+												<div class="portfolio-gallery-hidden" aria-hidden="true">
+													{
+														item.images.map((image, imageIndex) => (
+															<button
+																type="button"
+																class="portfolio-gallery-hidden-tile"
+																tabindex="-1"
+																data-gallery-group={galleryGroup}
+																data-gallery-image={image}
+																data-gallery-title={item.title}
+																data-gallery-caption={`${item.title} ${imageIndex + 1}`}
+																aria-hidden="true"
+															/>
+														))
+													}
+												</div>
+											</>
+										);
+									})()}
 								</article>
 							))
 						}
@@ -304,24 +422,23 @@ const clientCardImages = [
 			</section>
 
 			<section class="contact-section" id="contact">
+				<div class="container">
+					<div class="catalog-heading reveal">
+						<p class="section-kicker">{content.contact.kicker}</p>
+					</div>
+				</div>
 				<div class="container contact-shell">
 					<div class="contact-copy reveal">
-						<p class="section-kicker">{content.contact.kicker}</p>
+						<p class="contact-lead">{content.contact.title}</p>
 						<p class="section-text">{content.contact.body}</p>
-						<div class="hero-actions">
-							<a class="button button-primary" href={content.contact.primaryHref}>{content.contact.primaryAction}</a>
-							<a class="button button-secondary" href={content.contact.secondaryHref} target="_blank" rel="noreferrer">
-								{content.contact.secondaryAction}
-							</a>
-							<a class="button button-secondary" href={`mailto:${content.contact.email}`}>
-								{content.contact.emailAction}
-							</a>
-						</div>
 						<p class="contact-email">
 							<span>{content.contact.emailLabel}</span>
-							<a href={`mailto:${content.contact.email}`}>{content.contact.email}</a>
+							<a href={mailtoHref}>{content.contact.email}</a>
 						</p>
-						<p class="contact-note">{content.contact.note}</p>
+						<p class="contact-email">
+							<span>{content.contact.phoneLabel}</span>
+							<a href={content.contact.primaryHref}>{content.contact.phone}</a>
+						</p>
 					</div>
 					<div class="contact-cards">
 						<form class="contact-form reveal" data-inquiry-form>
@@ -364,6 +481,15 @@ const clientCardImages = [
 								{content.contact.form.telegramNotice}
 							</p>
 						</form>
+						<dialog class="inquiry-dialog" data-inquiry-dialog>
+							<div class="inquiry-dialog-inner">
+								<h3>Спасибо</h3>
+								<p data-inquiry-dialog-message>{content.contact.form.successMessage}</p>
+								<button type="button" class="button button-primary" data-inquiry-dialog-close>
+									OK
+								</button>
+							</div>
+						</dialog>
 					</div>
 				</div>
 			</section>
@@ -378,40 +504,6 @@ const clientCardImages = [
 				<a href="#top">{content.nav.contact}</a>
 			</div>
 		</footer>
-
-		<div class="floating-actions" aria-label="Quick contact actions" data-floating-actions>
-			<a class="floating-action floating-action-call" href={content.contact.primaryHref}>
-				<span class="floating-action-icon" aria-hidden="true">
-					<svg viewBox="0 0 24 24" role="img" focusable="false">
-						<path
-							d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.3 11.3 0 0 0 3.55.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.3 11.3 0 0 0 .58 3.55 1 1 0 0 1-.25 1.02z"
-						></path>
-					</svg>
-				</span>
-				<span class="floating-action-copy">
-					<span class="floating-action-label">{content.contact.primaryAction}</span>
-					<strong>+372 5633 3338</strong>
-				</span>
-			</a>
-			<a
-				class="floating-action floating-action-telegram"
-				href={content.contact.secondaryHref}
-				target="_blank"
-				rel="noreferrer"
-			>
-				<span class="floating-action-icon" aria-hidden="true">
-					<svg viewBox="0 0 24 24" role="img" focusable="false">
-						<path
-							d="M21.5 4.5 18.4 19c-.23 1.02-.84 1.27-1.7.8l-4.7-3.46-2.26 2.18c-.25.25-.46.46-.94.46l.34-4.82 8.78-7.93c.38-.34-.08-.54-.58-.2l-10.85 6.84-4.67-1.46c-1.02-.32-1.04-1.02.22-1.51L20.1 3.1c.84-.3 1.57.2 1.3 1.4Z"
-						></path>
-					</svg>
-				</span>
-				<span class="floating-action-copy">
-					<span class="floating-action-label">Telegram</span>
-					<strong>@corbetti_build</strong>
-				</span>
-			</a>
-		</div>
 
 		<dialog class="gallery-dialog" data-gallery-dialog>
 			<button type="button" class="gallery-dialog-close" aria-label="Close gallery" data-gallery-close>
@@ -433,10 +525,63 @@ const clientCardImages = [
 				</div>
 			</div>
 		</dialog>
+
+		{
+			content.reviews && (
+				<dialog class="review-dialog" data-review-dialog>
+					<button type="button" class="gallery-dialog-close" aria-label="Close review form" data-review-close>
+						&#215;
+					</button>
+					<form class="review-form" data-review-form>
+						<h3>{content.reviews.form.title}</h3>
+						<label class="form-field">
+							<span>{content.reviews.form.nameLabel}</span>
+							<input name="name" type="text" autocomplete="name" required />
+						</label>
+						<fieldset class="rating-field">
+							<legend>{content.reviews.form.ratingLabel}</legend>
+							<div class="rating-stars" role="radiogroup" aria-label={content.reviews.form.ratingLabel}>
+								{[1, 2, 3, 4, 5].map((value) => (
+									<label class="rating-star">
+										<input type="radio" name="rating" value={value} required />
+										<span aria-hidden="true">★</span>
+									</label>
+								))}
+							</div>
+						</fieldset>
+						<label class="form-field">
+							<span>{content.reviews.form.messageLabel}</span>
+							<textarea name="message" rows="3" required></textarea>
+						</label>
+						<button
+							type="submit"
+							class="button button-primary form-submit"
+							data-submit-label={content.reviews.form.submitLabel}
+							data-submitting-label={content.reviews.form.submittingLabel}
+						>
+							{content.reviews.form.submitLabel}
+						</button>
+						<p
+							class="form-note"
+							data-review-note
+							data-success-message={content.reviews.form.successMessage}
+							data-error-message={content.reviews.form.errorMessage}
+						></p>
+					</form>
+					<div class="review-success" data-review-success hidden>
+						<div class="review-success-mark" aria-hidden="true">★</div>
+						<h3>{content.reviews.form.successTitle}</h3>
+						<p>{content.reviews.form.successBody}</p>
+						<button type="button" class="button button-primary" data-review-success-close>
+							OK
+						</button>
+					</div>
+				</dialog>
+			)
+		}
 	</div>
 
 	<script is:inline>
-		const floatingActions = document.querySelector('[data-floating-actions]');
 		const galleryDialog = document.querySelector('[data-gallery-dialog]');
 		const galleryPreview = document.querySelector('[data-gallery-preview]');
 		const galleryPreviewTitle = document.querySelector('[data-gallery-preview-title]');
@@ -445,19 +590,74 @@ const clientCardImages = [
 		const galleryPrev = document.querySelector('[data-gallery-prev]');
 		const galleryNext = document.querySelector('[data-gallery-next]');
 		const inquiryForm = document.querySelector('[data-inquiry-form]');
+		const reviewDialog = document.querySelector('[data-review-dialog]');
+		const reviewOpen = document.querySelector('[data-review-open]');
+		const reviewClose = document.querySelector('[data-review-close]');
+		const reviewForm = document.querySelector('[data-review-form]');
+		const reviewSuccess = document.querySelector('[data-review-success]');
+		const reviewSuccessClose = document.querySelector('[data-review-success-close]');
+		const reviewsToggle = document.querySelector('[data-reviews-toggle]');
+		const reviewsPanel = document.querySelector('[data-reviews-panel]');
+		const initialReviews = JSON.parse(reviewsPanel?.getAttribute('data-initial-reviews') ?? '[]');
+		const reviewsRatingValue = document.querySelector('[data-reviews-rating-value]');
+		const reviewsRatingLabel = document.querySelector('[data-reviews-rating-label]');
+		const inquiryDialog = document.querySelector('[data-inquiry-dialog]');
+		const inquiryDialogClose = document.querySelector('[data-inquiry-dialog-close]');
 
-		if (floatingActions) {
-			const toggleFloatingActions = () => {
-				const isVisible = window.scrollY > 320;
-				floatingActions.classList.toggle('is-visible', isVisible);
-			};
+		const escapeHtml = (value) =>
+			String(value ?? '')
+				.replaceAll('&', '&amp;')
+				.replaceAll('<', '&lt;')
+				.replaceAll('>', '&gt;')
+				.replaceAll('"', '&quot;')
+				.replaceAll("'", '&#39;');
 
-			toggleFloatingActions();
-			window.addEventListener('scroll', toggleFloatingActions, { passive: true });
-		}
+		const renderStars = (rating) => {
+			const normalizedRating = Math.max(1, Math.min(5, Number(rating) || 5));
+			return '\u2605'.repeat(normalizedRating) + '\u2606'.repeat(5 - normalizedRating);
+		};
+
+		const renderReviews = (reviews) => {
+			if (!reviewsPanel) {
+				return;
+			}
+
+			reviewsPanel.innerHTML = reviews
+				.map(
+					(item, index) => `
+						<article class="review-card" style="--delay:${index * 90}ms">
+							<div class="review-card-topline">
+								<div>
+									<h3>${escapeHtml(item.name)}</h3>
+								</div>
+								<span class="review-stars" aria-label="${Number(item.rating) || 5} out of 5 stars">${renderStars(item.rating)}</span>
+							</div>
+							<p class="review-quote">${escapeHtml(item.message)}</p>
+						</article>
+					`,
+				)
+				.join('');
+
+			if (reviewsToggle) {
+				reviewsToggle.textContent = `(${reviews.length})`;
+			}
+
+			if (reviewsRatingValue && reviewsRatingLabel) {
+				const averageRating =
+					reviews.length > 0
+						? reviews.reduce((total, item) => total + (Number(item.rating) || 5), 0) / reviews.length
+						: 5;
+
+				reviewsRatingValue.textContent = `${averageRating.toFixed(1)} / 5`;
+				reviewsRatingLabel.textContent = reviews.length === 1 ? '1 review' : `${reviews.length} reviews`;
+			}
+		};
+
+		renderReviews(initialReviews);
 
 		if (galleryDialog && galleryPreview && galleryPreviewTitle && galleryPreviewCaption) {
 			const galleryTiles = Array.from(document.querySelectorAll('[data-gallery-image]'));
+			const galleryOpeners = Array.from(document.querySelectorAll('[data-gallery-open-group]'));
 			let activeGalleryIndex = -1;
 			let activeGalleryTiles = [];
 
@@ -493,6 +693,23 @@ const clientCardImages = [
 					);
 					const nextIndex = activeGalleryTiles.indexOf(tile);
 					renderGalleryItem(nextIndex >= 0 ? nextIndex : index);
+					galleryDialog.showModal();
+				});
+			});
+
+			galleryOpeners.forEach((opener) => {
+				opener.addEventListener('click', () => {
+					const group = opener.getAttribute('data-gallery-open-group') ?? '';
+					const startIndex = Number(opener.getAttribute('data-gallery-open-index') ?? '0');
+					activeGalleryTiles = galleryTiles.filter(
+						(candidate) => (candidate.getAttribute('data-gallery-group') ?? '') === group,
+					);
+
+					if (!activeGalleryTiles.length) {
+						return;
+					}
+
+					renderGalleryItem(Number.isNaN(startIndex) ? 0 : startIndex);
 					galleryDialog.showModal();
 				});
 			});
@@ -571,6 +788,10 @@ const clientCardImages = [
 						formNote.textContent = formNote.dataset.successMessage ?? '';
 						formNote.dataset.state = 'success';
 					}
+
+					if (inquiryDialog instanceof HTMLDialogElement) {
+						inquiryDialog.showModal();
+					}
 				} catch (error) {
 					console.error(error);
 
@@ -599,6 +820,152 @@ const clientCardImages = [
 				window.open(telegramUrl, '_blank', 'noopener,noreferrer');
 			});
 		}
+
+		inquiryDialogClose?.addEventListener('click', () => inquiryDialog?.close());
+		inquiryDialog?.addEventListener('click', (event) => {
+			if (event.target === inquiryDialog) {
+				inquiryDialog.close();
+			}
+		});
+
+		if (reviewDialog && reviewOpen) {
+			reviewOpen.addEventListener('click', () => {
+				reviewForm?.removeAttribute('hidden');
+				reviewSuccess?.setAttribute('hidden', '');
+				reviewDialog.showModal();
+			});
+			reviewClose?.addEventListener('click', () => reviewDialog.close());
+			reviewSuccessClose?.addEventListener('click', () => reviewDialog.close());
+			reviewDialog.addEventListener('click', (event) => {
+				if (event.target === reviewDialog) {
+					reviewDialog.close();
+				}
+			});
+		}
+
+		if (reviewsToggle && reviewsPanel) {
+			reviewsToggle.addEventListener('click', () => {
+				const isExpanded = reviewsToggle.getAttribute('aria-expanded') === 'true';
+				reviewsToggle.setAttribute('aria-expanded', String(!isExpanded));
+
+				if (isExpanded) {
+					reviewsPanel.classList.remove('is-open');
+				} else {
+					reviewsPanel.classList.add('is-open');
+				}
+			});
+		}
+
+		if (reviewForm) {
+			const submitButton = reviewForm.querySelector('.form-submit');
+			const formNote = reviewForm.querySelector('[data-review-note]');
+			const ratingInputs = Array.from(reviewForm.querySelectorAll('input[name="rating"]'));
+			const updateRatingVisuals = () => {
+				const selectedValue = Number(
+					ratingInputs.find((input) => input instanceof HTMLInputElement && input.checked)?.value ?? '0',
+				);
+
+				ratingInputs.forEach((input) => {
+					if (!(input instanceof HTMLInputElement)) {
+						return;
+					}
+
+					input.parentElement?.classList.toggle('is-active', Number(input.value) <= selectedValue);
+				});
+			};
+
+			ratingInputs.forEach((input) => input.addEventListener('change', updateRatingVisuals));
+			updateRatingVisuals();
+
+			reviewForm.addEventListener('submit', async (event) => {
+				event.preventDefault();
+
+				const formData = new FormData(reviewForm);
+				const name = String(formData.get('name') ?? '').trim();
+				const rating = String(formData.get('rating') ?? '').trim();
+				const message = String(formData.get('message') ?? '').trim();
+
+				if (submitButton instanceof HTMLButtonElement) {
+					submitButton.disabled = true;
+					submitButton.textContent = submitButton.dataset.submittingLabel ?? 'Sending...';
+				}
+
+				if (formNote instanceof HTMLElement) {
+					formNote.textContent = '';
+					formNote.dataset.state = 'idle';
+				}
+
+				try {
+					const response = await fetch('/api/reviews', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({
+							name,
+							message: `${'★'.repeat(Number(rating) || 5)}\n${message}`,
+							locale: document.documentElement.lang || 'ru',
+						}),
+					});
+
+					if (!response.ok) {
+						throw new Error(`Request failed with status ${response.status}`);
+					}
+
+					reviewForm.reset();
+					updateRatingVisuals();
+
+					const reviewsResponse = await fetch('/api/reviews', {
+						headers: {
+							Accept: 'application/json',
+						},
+					});
+
+					if (reviewsResponse.ok) {
+						const reviewsPayload = await reviewsResponse.json();
+
+						if (Array.isArray(reviewsPayload.reviews)) {
+							renderReviews(reviewsPayload.reviews);
+						}
+					}
+
+					if (formNote instanceof HTMLElement) {
+						formNote.textContent = formNote.dataset.successMessage ?? '';
+						formNote.dataset.state = 'success';
+					}
+
+					reviewForm.setAttribute('hidden', '');
+					reviewSuccess?.removeAttribute('hidden');
+				} catch (error) {
+					console.error(error);
+
+					if (formNote instanceof HTMLElement) {
+						formNote.textContent = formNote.dataset.errorMessage ?? '';
+						formNote.dataset.state = 'error';
+					}
+				} finally {
+					if (submitButton instanceof HTMLButtonElement) {
+						submitButton.disabled = false;
+						submitButton.textContent = submitButton.dataset.submitLabel ?? 'Submit';
+					}
+				}
+			});
+		}
+
+		fetch('/api/reviews', {
+			headers: {
+				Accept: 'application/json',
+			},
+		})
+			.then((response) => (response.ok ? response.json() : null))
+			.then((payload) => {
+				if (payload && Array.isArray(payload.reviews) && payload.reviews.length > 0) {
+					renderReviews(payload.reviews);
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	</script>
 </BaseLayout>
 

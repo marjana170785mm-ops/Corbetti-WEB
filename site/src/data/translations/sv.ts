@@ -1,5 +1,17 @@
 ﻿import type { PageContent } from '../types';
-import { portfolioFacadeImages, portfolioHouseImages, portfolioInteriorImages } from '../portfolio-images';
+import {
+	portfolioConcreteImages,
+	portfolioDemolitionImages,
+	portfolioFacadeImages,
+	portfolioFloorRepairImages,
+	portfolioHeatBoxImages,
+	portfolioHouseImages,
+	portfolioPremisesRepairImages,
+	portfolioRegipsImages,
+	portfolioScaffoldImages,
+	portfolioToljanImages,
+	portfolioWindowInstallImages,
+} from '../portfolio-images';
 
 export const sv: PageContent = {
 	langLabel: 'SV',
@@ -7,6 +19,7 @@ export const sv: PageContent = {
 	metaDescription:
 		'CORBETTI OÜ utför bygg-, renoverings-, fasad-, betong- och inredningsarbeten för privatkunder, företag och bostadsrättsföreningar.',
 	nav: {
+		home: 'Hem',
 		services: 'Tjänster',
 		portfolio: 'Projekt',
 		process: 'Process',
@@ -21,6 +34,7 @@ export const sv: PageContent = {
 			'Vi genomför bygg- och renoveringsarbeten från första förberedelse till färdigt resultat för privatkunder, företag och bostadsrättsföreningar.',
 		primaryCta: 'Skicka förfrågan',
 		secondaryCta: 'Se projekt',
+		stamp: 'Över 15 års erfarenhet inom bygg',
 		stats: [
 			{ value: 'B2C / B2B', label: 'privata och kommersiella kunder' },
 			{ value: 'Helhet', label: 'från start till finish' },
@@ -81,6 +95,44 @@ export const sv: PageContent = {
 			{ title: 'Bostadsrättsföreningar', text: 'Gemensamma ytor, fasader, trapphus och tekniska uppgraderingar.' },
 		],
 	},
+	reviews: {
+		kicker: 'Omdömen',
+		title: '',
+		body: '',
+		sourceLabel: '',
+		actionLabel: 'Lämna omdöme',
+		stats: [
+			{ value: '5.0 / 5', label: 'genomsnittsbetyg' },
+			{ value: '100%', label: 'positiva omdömen' },
+			{ value: '2', label: 'offentliga omdömen' },
+		],
+		items: [
+			{
+				author: 'Anna-Elina O.',
+				task: 'Montering av kökslampa',
+				time: '2 år sedan',
+				quote: 'Suur aitäh tegijale hea töö eest. Soovitan tegijat teistele klientidele.',
+			},
+			{
+				author: 'Andrei',
+				task: 'Annat arbete',
+				time: '2 år sedan',
+				quote: 'Suurepärane professionaalide meeskond, soovitan. Отличьная команда проффесионалов ,рекомендую',
+			},
+		],
+		form: {
+			title: 'Lämna omdöme',
+			nameLabel: 'Ditt namn',
+			ratingLabel: 'Betyg',
+			messageLabel: 'Ditt omdöme',
+			submitLabel: 'Skicka omdöme',
+			submittingLabel: 'Skickar...',
+			successMessage: 'Tack. Ditt omdöme har skickats.',
+			errorMessage: 'Det gick inte att skicka omdömet. Försök igen.',
+			successTitle: 'Tack för ditt omdöme',
+			successBody: 'Vi har tagit emot ditt meddelande och går igenom omdömet snart.',
+		},
+	},
 	process: {
 		kicker: 'Arbetssätt',
 		title: 'Tydlig väg från förfrågan till färdigt objekt',
@@ -90,25 +142,72 @@ export const sv: PageContent = {
 			{ title: '3. Utförande', text: 'Bygg- och renoveringsarbetet sker stegvis enligt överenskommelse.' },
 			{ title: '4. Överlämning', text: 'Vi kontrollerar resultatet, slutför detaljerna och gör objektet redo för användning.' },
 		],
+		certificates: {
+			title: 'Våra certifikat',
+			items: [
+				{ name: 'Arbetssakerhetskort', number: '1489679211460' },
+				{ name: 'Hot Work Certificate', number: '12204841124304' },
+			],
+		},
 	},
 	portfolio: {
 		kicker: 'Våra arbeten',
 		title: 'Verkliga CORBETTI OÜ-projekt',
 		items: [
 			{
-				title: 'Privathus och viktiga byggskeden',
-				text: 'Ett objekt visat genom tio bilder, från utsida till trappa och invändiga arbeten.',
+				title: 'Privat hus: byggskeden',
+				text: '',
 				images: portfolioHouseImages,
 			},
 			{
-				title: 'Tak, innerväggar och tekniska detaljer',
-				text: 'Arbetsbilder med taksystem, isolering, innerväggar och teknisk förberedelse.',
-				images: portfolioInteriorImages,
+				title: 'Fasadarbeten',
+				text: '',
+				images: portfolioFacadeImages,
 			},
 			{
-				title: 'Fasaddetaljer, öppningar och invändig finish',
-				text: 'Ytterligare ett block med riktiga CORBETTI OÜ-bilder från fasad- och inomhusarbete.',
-				images: portfolioFacadeImages,
+				title: 'Byggställningstjänster',
+				text: '',
+				images: portfolioScaffoldImages,
+			},
+			{
+				title: 'Fönstermontage',
+				text: '',
+				images: portfolioWindowInstallImages,
+			},
+			{
+				title: 'Betongarbeten',
+				text: '',
+				images: portfolioConcreteImages,
+			},
+			{
+				title: 'Rivningsarbeten',
+				text: '',
+				images: portfolioDemolitionImages,
+			},
+			{
+				title: 'Montering av skåp för värmecentral',
+				text: '',
+				images: portfolioHeatBoxImages,
+			},
+			{
+				title: 'Renovering av lokaler',
+				text: '',
+				images: portfolioPremisesRepairImages,
+			},
+			{
+				title: 'Golvreparation',
+				text: '',
+				images: portfolioFloorRepairImages,
+			},
+			{
+				title: 'Gipsskivearbeten',
+				text: '',
+				images: portfolioRegipsImages,
+			},
+			{
+				title: 'Bygg- och finishskeden',
+				text: '',
+				images: portfolioToljanImages,
 			},
 		],
 	},
@@ -195,8 +294,10 @@ export const sv: PageContent = {
 	},
 	contact: {
 		kicker: 'Kontakt',
-		title: 'Redo att prata om ert projekt',
-		body: 'Beskriv objektets läge, typ av arbete och önskad tidsplan. CORBETTI OÜ tar emot förfrågningar via telefon och Telegram.',
+		title: 'Ring oss eller skicka en förfrågan för offert',
+		body: 'Beskriv typ av arbete, objektets adress och önskad tidsplan. CORBETTI OÜ tar emot förfrågningar via telefon, Telegram och e-post.',
+		phoneLabel: 'Telefon',
+		phone: '+37256333338',
 		emailLabel: 'E-post',
 		email: 'corbetti.group@gmail.com',
 		emailAction: 'Skriv via e-post',
@@ -220,7 +321,7 @@ export const sv: PageContent = {
 		cards: [
 			{ label: 'Telefon', value: '+372 5633 3338' },
 			{ label: 'Telegram', value: '@corbetti_build' },
-			{ label: 'Språk', value: 'Eesti, русский, English, Suomi, Svenska' },
+			{ label: 'Språk', value: 'Eesti, русский, English, Svenska' },
 			{ label: 'Kundtyper', value: 'Privatkunder, företag, bostadsrättsföreningar' },
 			{ label: 'Fokus', value: 'Bygg, renovering, fasader, betong, interiörer' },
 		],

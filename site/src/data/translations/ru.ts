@@ -1,5 +1,17 @@
 ﻿import type { PageContent } from '../types';
-import { portfolioFacadeImages, portfolioHouseImages, portfolioInteriorImages } from '../portfolio-images';
+import {
+	portfolioConcreteImages,
+	portfolioDemolitionImages,
+	portfolioFacadeImages,
+	portfolioFloorRepairImages,
+	portfolioHeatBoxImages,
+	portfolioHouseImages,
+	portfolioPremisesRepairImages,
+	portfolioRegipsImages,
+	portfolioScaffoldImages,
+	portfolioToljanImages,
+	portfolioWindowInstallImages,
+} from '../portfolio-images';
 
 export const ru: PageContent = {
 	langLabel: 'RU',
@@ -7,6 +19,7 @@ export const ru: PageContent = {
 	metaDescription:
 		'CORBETTI OÜ выполняет строительные, ремонтные, фасадные, бетонные и отделочные работы для частных клиентов, бизнеса и квартирных товариществ.',
 	nav: {
+		home: 'Главная',
 		services: 'Услуги',
 		portfolio: 'Портфолио',
 		process: 'Процесс',
@@ -21,6 +34,7 @@ export const ru: PageContent = {
 			'Берём на себя строительство, ремонт и внутреннюю отделку под ключ. Работаем с частными лицами, компаниями и квартирными товариществами.',
 		primaryCta: 'Оставить заявку',
 		secondaryCta: 'Смотреть работы',
+		stamp: 'Опыт в строительстве более 15 лет',
 		stats: [
 			{ value: 'B2C / B2B', label: 'частные и бизнес-клиенты' },
 			{ value: 'Под ключ', label: 'от подготовки до отделки' },
@@ -81,6 +95,44 @@ export const ru: PageContent = {
 			{ title: 'Квартирные товарищества', text: 'Общие зоны, лестничные клетки, фасады и технические обновления.' },
 		],
 	},
+	reviews: {
+		kicker: 'Отзывы',
+		title: '',
+		body: '',
+		sourceLabel: '',
+		actionLabel: 'Оставить отзыв',
+		stats: [
+			{ value: '5.0 / 5', label: 'средняя оценка' },
+			{ value: '100%', label: 'положительные отзывы' },
+			{ value: '2', label: 'публичных отзыва' },
+		],
+		items: [
+			{
+				author: 'Anna-Elina O.',
+				task: 'Установка кухонной лампы',
+				time: '2 года назад',
+				quote: 'Suur aitäh tegijale hea töö eest. Soovitan tegijat teistele klientidele.',
+			},
+			{
+				author: 'Andrei',
+				task: 'Другое',
+				time: '2 года назад',
+				quote: 'Suurepärane professionaalide meeskond, soovitan. Отличьная команда проффесионалов ,рекомендую',
+			},
+		],
+		form: {
+			title: 'Оставить отзыв',
+			nameLabel: 'Ваше имя',
+			ratingLabel: 'Оценка',
+			messageLabel: 'Ваш отзыв',
+			submitLabel: 'Отправить отзыв',
+			submittingLabel: 'Отправляем...',
+			successMessage: 'Спасибо. Ваш отзыв отправлен.',
+			errorMessage: 'Не удалось отправить отзыв. Попробуйте ещё раз.',
+			successTitle: 'Спасибо за отзыв',
+			successBody: 'Мы получили ваше сообщение и скоро посмотрим отзыв.',
+		},
+	},
 	process: {
 		kicker: 'Как мы работаем',
 		title: 'Понятный процесс от запроса до сдачи',
@@ -90,25 +142,72 @@ export const ru: PageContent = {
 			{ title: '3. Выполнение', text: 'Организуем строительные и отделочные работы по согласованному плану.' },
 			{ title: '4. Передача результата', text: 'Проверяем итог, завершаем объект и подготавливаем его к использованию.' },
 		],
+		certificates: {
+			title: 'Наши сертификаты',
+			items: [
+				{ name: 'Arbetssakerhetskort', number: '1489679211460' },
+				{ name: 'Hot Work Certificate', number: '12204841124304' },
+			],
+		},
 	},
 	portfolio: {
 		kicker: 'Наши работы',
 		title: 'Реальные объекты и этапы работ CORBETTI OÜ',
 		items: [
 			{
-				title: 'Частный дом и основные этапы строительства',
+				title: 'Этапы строительства',
 				text: '',
 				images: portfolioHouseImages,
 			},
 			{
-				title: 'Потолки, перегородки и инженерные узлы',
-				text: '',
-				images: portfolioInteriorImages,
-			},
-			{
-				title: 'Наружные детали, проёмы и внутренняя отделка',
+				title: 'Фасадные работы',
 				text: '',
 				images: portfolioFacadeImages,
+			},
+			{
+				title: 'Услуги по строительным лесам',
+				text: '',
+				images: portfolioScaffoldImages,
+			},
+			{
+				title: 'УСТАНОВКА ОКОН',
+				text: '',
+				images: portfolioWindowInstallImages,
+			},
+			{
+				title: 'БЕТОННЫЕ РАБОТЫ',
+				text: '',
+				images: portfolioConcreteImages,
+			},
+			{
+				title: 'Демонтажные работы',
+				text: '',
+				images: portfolioDemolitionImages,
+			},
+			{
+				title: 'Установка ящиков для теплоузла',
+				text: '',
+				images: portfolioHeatBoxImages,
+			},
+			{
+				title: 'Ремонт помещений',
+				text: '',
+				images: portfolioPremisesRepairImages,
+			},
+			{
+				title: 'Ремонт пола',
+				text: '',
+				images: portfolioFloorRepairImages,
+			},
+			{
+				title: 'Работы по регипсу',
+				text: '',
+				images: portfolioRegipsImages,
+			},
+			{
+				title: 'Этапы отделки',
+				text: '',
+				images: portfolioToljanImages,
 			},
 		],
 	},
@@ -195,8 +294,10 @@ export const ru: PageContent = {
 	},
 	contact: {
 		kicker: 'Свяжитесь с нами',
-		title: 'Можно обсудить объект уже сейчас',
-		body: 'Опишите тип работ, адрес объекта и желаемые сроки. CORBETTI OÜ принимает заявки по телефону и через Telegram.',
+		title: 'За предложением смело звоните или оставляйте заявку',
+		body: 'Опишите тип работ, адрес объекта и желаемые сроки. CORBETTI OÜ принимает обращения по телефону, через Telegram и по e-mail.',
+		phoneLabel: 'Телефон',
+		phone: '+37256333338',
 		emailLabel: 'Электронная почта',
 		email: 'corbetti.group@gmail.com',
 		emailAction: 'Написать на e-mail',
@@ -213,14 +314,14 @@ export const ru: PageContent = {
 			messageLabel: 'Опишите задачу',
 			submitLabel: 'Отправить в Telegram',
 			submittingLabel: 'Отправка...',
-			successMessage: 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.',
+			successMessage: 'Спасибо. Ваша заявка отправлена. Мы свяжемся с Вами при первой возможности.',
 			errorMessage: 'Не удалось отправить заявку. Попробуйте ещё раз или напишите в Telegram.',
 			telegramNotice: 'Форма отправляет заявку напрямую в Telegram.',
 		},
 		cards: [
 			{ label: 'Телефон', value: '+372 5633 3338' },
 			{ label: 'Telegram', value: '@corbetti_build' },
-			{ label: 'Языки', value: 'Eesti, русский, English, Suomi, Svenska' },
+			{ label: 'Языки', value: 'Eesti, русский, English, Svenska' },
 			{ label: 'Клиенты', value: 'Частные лица, бизнес, квартирные товарищества' },
 			{ label: 'Направления', value: 'Стройка, ремонт, фасады, бетон, отделка' },
 		],
