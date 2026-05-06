@@ -4,6 +4,7 @@ import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://corbetti.ee',
 	adapter: node({
 		mode: 'standalone',
 	}),
