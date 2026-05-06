@@ -1,4 +1,6 @@
 import nodemailer from 'nodemailer';
+import { existsSync, readFileSync } from 'node:fs';
+import path from 'node:path';
 
 export const prerender = false;
 
@@ -29,6 +31,37 @@ type InquiryPayload = {
 
 type NormalizedPayload = Required<InquiryPayload>;
 
+const readDotEnv = () => {
+	const envPath = path.resolve(process.cwd(), '.env');
+
+	if (!existsSync(envPath)) {
+		return {};
+	}
+
+	return Object.fromEntries(
+		readFileSync(envPath, 'utf-8')
+			.split(/\r?\n/)
+			.map((line) => line.trim())
+			.filter((line) => line && !line.startsWith('#') && line.includes('='))
+			.map((line) => {
+				const separatorIndex = line.indexOf('=');
+				const key = line.slice(0, separatorIndex).trim();
+				const value = line.slice(separatorIndex + 1).trim().replace(/^["']|["']$/g, '');
+				return [key, value];
+			}),
+	);
+};
+
+const dotEnv = readDotEnv();
+
+const getEnv = (key: string) => {
+	const runtimeValue = process.env[key];
+	const astroValue = import.meta.env[key];
+	const fileValue = dotEnv[key];
+
+	return String(runtimeValue ?? astroValue ?? fileValue ?? '').trim();
+};
+
 const buildHtmlMessage = ({ name, phone, location, workType, message, pageUrl, locale }: NormalizedPayload) => {
 	const isReview = workType === 'Website review';
 	const lines = [
@@ -57,8 +90,8 @@ const buildEmailSubject = ({ name, phone, workType }: NormalizedPayload) =>
 		: `New inquiry from Corbetti website: ${name} ${phone}`;
 
 const sendTelegramInquiry = async (payload: NormalizedPayload) => {
-	const botToken = import.meta.env.TELEGRAM_BOT_TOKEN;
-	const chatId = import.meta.env.TELEGRAM_CHAT_ID;
+	const botToken = getEnv('TELEGRAM_BOT_TOKEN');
+	const chatId = getEnv('TELEGRAM_CHAT_ID');
 
 	if (!botToken || !chatId) {
 		throw new Error('Telegram environment variables are not configured.');
@@ -81,12 +114,12 @@ const sendTelegramInquiry = async (payload: NormalizedPayload) => {
 };
 
 const sendEmailInquiry = async (payload: NormalizedPayload) => {
-	const smtpHost = import.meta.env.SMTP_HOST;
-	const smtpPort = Number(import.meta.env.SMTP_PORT ?? 587);
-	const smtpUser = import.meta.env.SMTP_USER;
-	const smtpPass = import.meta.env.SMTP_PASS;
-	const smtpFrom = import.meta.env.SMTP_FROM ?? smtpUser;
-	const inquiryEmailTo = import.meta.env.INQUIRY_EMAIL_TO ?? 'corbetti.group@gmail.com';
+	const smtpHost = getEnv('SMTP_HOST');
+	const smtpPort = Number(getEnv('SMTP_PORT') || 587);
+	const smtpUser = getEnv('SMTP_USER');
+	const smtpPass = getEnv('SMTP_PASS');
+	const smtpFrom = getEnv('SMTP_FROM') || smtpUser;
+	const inquiryEmailTo = getEnv('INQUIRY_EMAIL_TO') || 'corbetti.group@gmail.com';
 
 	if (!smtpHost || !smtpUser || !smtpPass || !smtpFrom || !inquiryEmailTo) {
 		return { skipped: true };

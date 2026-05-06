@@ -21,6 +21,9 @@ const defaultReviewStore = (): ReviewStoreShape => ({
 	reviews: [],
 });
 
+const isTestReview = (review: StoredReview) =>
+	review.name.trim().toLowerCase() === 'marina' && review.message.trim().toLowerCase() === 'проверка';
+
 const normalizeStoredReview = (review: Partial<StoredReview>): StoredReview | null => {
 	const name = String(review.name ?? '').trim();
 	const message = String(review.message ?? '').trim();
@@ -59,11 +62,16 @@ const readReviewStore = async (): Promise<ReviewStoreShape> => {
 	try {
 		const raw = await fs.readFile(REVIEWS_FILE, 'utf-8');
 		const parsed = JSON.parse(raw) as Partial<ReviewStoreShape>;
-		const reviews = Array.isArray(parsed.reviews)
+		const normalizedReviews = Array.isArray(parsed.reviews)
 			? parsed.reviews
 					.map((review) => normalizeStoredReview(review))
 					.filter((review): review is StoredReview => review !== null)
 			: [];
+		const reviews = normalizedReviews.filter((review) => !isTestReview(review));
+
+		if (reviews.length !== normalizedReviews.length) {
+			await writeReviewStore({ reviews });
+		}
 
 		return { reviews };
 	} catch {
