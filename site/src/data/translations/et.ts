@@ -314,6 +314,7 @@ export const et: PageContent = {
 			messageLabel: 'Kirjeldage tööd',
 			submitLabel: 'Saada Telegrami',
 			submittingLabel: 'Saatmine...',
+			successTitle: 'Aitäh',
 			successMessage: 'Päring on saadetud. Võtame teiega peagi ühendust.',
 			errorMessage: 'Päringu saatmine ebaõnnestus. Proovige uuesti või kirjutage Telegramis.',
 			telegramNotice: 'Vorm saadab päringu otse Telegrami.',

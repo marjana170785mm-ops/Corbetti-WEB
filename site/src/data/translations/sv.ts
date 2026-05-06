@@ -314,6 +314,7 @@ export const sv: PageContent = {
 			messageLabel: 'Beskriv arbetet',
 			submitLabel: 'Skicka till Telegram',
 			submittingLabel: 'Skickar...',
+			successTitle: 'Tack',
 			successMessage: 'Förfrågan har skickats. Vi kontaktar er inom kort.',
 			errorMessage: 'Det gick inte att skicka förfrågan. Försök igen eller skriv till oss på Telegram.',
 			telegramNotice: 'Formuläret skickar förfrågan direkt till Telegram.',

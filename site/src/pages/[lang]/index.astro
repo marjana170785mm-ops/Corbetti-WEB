@@ -483,7 +483,7 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 						</form>
 						<dialog class="inquiry-dialog" data-inquiry-dialog>
 							<div class="inquiry-dialog-inner">
-								<h3>Спасибо</h3>
+								<h3>{content.contact.form.successTitle}</h3>
 								<p data-inquiry-dialog-message>{content.contact.form.successMessage}</p>
 								<button type="button" class="button button-primary" data-inquiry-dialog-close>
 									OK

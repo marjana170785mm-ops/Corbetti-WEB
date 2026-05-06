@@ -314,6 +314,7 @@ export const ru: PageContent = {
 			messageLabel: 'Опишите задачу',
 			submitLabel: 'Отправить в Telegram',
 			submittingLabel: 'Отправка...',
+			successTitle: 'Спасибо',
 			successMessage: 'Спасибо. Ваша заявка отправлена. Мы свяжемся с Вами при первой возможности.',
 			errorMessage: 'Не удалось отправить заявку. Попробуйте ещё раз или напишите в Telegram.',
 			telegramNotice: 'Форма отправляет заявку напрямую в Telegram.',

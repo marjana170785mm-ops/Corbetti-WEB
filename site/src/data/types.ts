@@ -112,6 +112,7 @@ export type PageContent = {
 			messageLabel: string;
 			submitLabel: string;
 			submittingLabel: string;
+			successTitle: string;
 			successMessage: string;
 			errorMessage: string;
 			telegramNotice: string;

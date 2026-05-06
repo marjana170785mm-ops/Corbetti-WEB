@@ -314,6 +314,7 @@ export const en: PageContent = {
 			messageLabel: 'Describe the project',
 			submitLabel: 'Send via Telegram',
 			submittingLabel: 'Sending...',
+			successTitle: 'Thank you',
 			successMessage: 'Your inquiry has been sent. We will get back to you soon.',
 			errorMessage: 'Failed to send the inquiry. Please try again or write to us on Telegram.',
 			telegramNotice: 'The form sends your inquiry directly to Telegram.',
