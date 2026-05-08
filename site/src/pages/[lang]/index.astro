@@ -168,15 +168,17 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 					<div class="service-catalog">
 						{
 							content.services.cards.map((card, index) => (
-								<article class="service-category reveal" style={`--delay:${index * 80}ms`}>
-									<div class="service-category-heading">
-										<h3>{card.title}</h3>
-									</div>
-									<p class="service-category-text">{card.text}</p>
+								<details class="service-category reveal" style={`--delay:${index * 80}ms`}>
+									<summary class="service-category-summary">
+										<div class="service-category-heading">
+											<h3>{card.title}</h3>
+										</div>
+										<p class="service-category-text">{card.text}</p>
+									</summary>
 									<ul class="service-category-list">
 										{card.items.map((item) => <li>{item}</li>)}
 									</ul>
-								</article>
+								</details>
 							))
 						}
 					</div>
@@ -203,25 +205,6 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 							))
 						}
 					</div>
-					{
-						content.process.certificates && (
-							<div class="process-certificates reveal">
-								<div class="process-certificates-head">
-									<p class="section-kicker process-certificates-kicker">{content.process.certificates.title}</p>
-								</div>
-								<div class="process-certificates-grid">
-									{
-										content.process.certificates.items.map((certificate) => (
-											<article class="process-certificate-card">
-												<strong>{certificate.name}</strong>
-												<span>{certificate.number}</span>
-											</article>
-										))
-									}
-								</div>
-							</div>
-						)
-					}
 				</div>
 			</section>
 
@@ -263,9 +246,9 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 											<span class="reviews-rating-label" data-reviews-rating-label>{content.reviews.stats[0]?.label}</span>
 											<div class="reviews-rating-inline">
 												<span class="review-stars reviews-summary-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-												<button type="button" class="reviews-count-button" data-reviews-toggle aria-expanded="false">
+												<span class="reviews-count" data-reviews-count>
 													({content.reviews.items.length})
-												</button>
+												</span>
 											</div>
 										</div>
 									</div>
@@ -274,6 +257,21 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 											<strong>{content.reviews.stats[1]?.value ?? '100%'}</strong>
 											<span>{content.reviews.stats[1]?.label}</span>
 										</div>
+									</div>
+									<div class="reviews-grid" data-reviews-panel data-initial-reviews={JSON.stringify(initialReviews)}>
+										{
+											content.reviews.items.map((item, index) => (
+												<article class="review-card" style={`--delay:${index * 90}ms`}>
+													<div class="review-card-topline">
+														<div>
+															<h3>{item.author}</h3>
+														</div>
+														<span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+													</div>
+													<p class="review-quote">{item.quote}</p>
+												</article>
+											))
+										}
 									</div>
 									<button
 										type="button"
@@ -284,7 +282,7 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 									</button>
 								</div>
 
-								<div class="reviews-grid" data-reviews-panel data-initial-reviews={JSON.stringify(initialReviews)}>
+								<div class="reviews-grid">
 									{
 										content.reviews.items.map((item, index) => (
 											<article class="review-card" style={`--delay:${index * 90}ms`}>
@@ -440,6 +438,21 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 							<span>{content.contact.phoneLabel}</span>
 							<a href={content.contact.primaryHref}>{content.contact.phone}</a>
 						</p>
+						{
+							content.process.certificates && (
+								<div class="contact-certificates">
+									<span>{content.process.certificates.title}</span>
+									{
+										content.process.certificates.items.map((certificate) => (
+											<p>
+												<strong>{certificate.name}</strong>
+												<em>{certificate.number}</em>
+											</p>
+										))
+									}
+								</div>
+							)
+						}
 					</div>
 					<div class="contact-cards">
 						<form class="contact-form reveal" data-inquiry-form>
@@ -597,7 +610,7 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 		const reviewForm = document.querySelector('[data-review-form]');
 		const reviewSuccess = document.querySelector('[data-review-success]');
 		const reviewSuccessClose = document.querySelector('[data-review-success-close]');
-		const reviewsToggle = document.querySelector('[data-reviews-toggle]');
+		const reviewsCount = document.querySelector('[data-reviews-count]');
 		const reviewsPanel = document.querySelector('[data-reviews-panel]');
 		const initialReviews = JSON.parse(reviewsPanel?.getAttribute('data-initial-reviews') ?? '[]');
 		const reviewsRatingValue = document.querySelector('[data-reviews-rating-value]');
@@ -639,8 +652,8 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 				)
 				.join('');
 
-			if (reviewsToggle) {
-				reviewsToggle.textContent = `(${reviews.length})`;
+			if (reviewsCount) {
+				reviewsCount.textContent = `(${reviews.length})`;
 			}
 
 			if (reviewsRatingValue && reviewsRatingLabel) {
@@ -840,19 +853,6 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 			reviewDialog.addEventListener('click', (event) => {
 				if (event.target === reviewDialog) {
 					reviewDialog.close();
-				}
-			});
-		}
-
-		if (reviewsToggle && reviewsPanel) {
-			reviewsToggle.addEventListener('click', () => {
-				const isExpanded = reviewsToggle.getAttribute('aria-expanded') === 'true';
-				reviewsToggle.setAttribute('aria-expanded', String(!isExpanded));
-
-				if (isExpanded) {
-					reviewsPanel.classList.remove('is-open');
-				} else {
-					reviewsPanel.classList.add('is-open');
 				}
 			});
 		}
