@@ -231,78 +231,6 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 				</div>
 			</section>
 
-			{
-				content.reviews && (
-					<section class="reviews-section">
-						<div class="container">
-							<div class="catalog-heading reveal">
-								<p class="section-kicker">{content.reviews.kicker}</p>
-							</div>
-							<div class="reviews-shell reveal">
-								<div class="reviews-summary">
-									<div class="reviews-headline">
-										<div class="reviews-rating-block">
-											<strong class="reviews-rating-value" data-reviews-rating-value>{content.reviews.stats[0]?.value ?? '5.0 / 5'}</strong>
-											<span class="reviews-rating-label" data-reviews-rating-label>{content.reviews.stats[0]?.label}</span>
-											<div class="reviews-rating-inline">
-												<span class="review-stars reviews-summary-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-												<span class="reviews-count" data-reviews-count>
-													({content.reviews.items.length})
-												</span>
-											</div>
-										</div>
-									</div>
-									<div class="reviews-stats">
-										<div class="reviews-stat-card reviews-stat-card-accent">
-											<strong>{content.reviews.stats[1]?.value ?? '100%'}</strong>
-											<span>{content.reviews.stats[1]?.label}</span>
-										</div>
-									</div>
-									<div class="reviews-grid" data-reviews-panel data-initial-reviews={JSON.stringify(initialReviews)}>
-										{
-											content.reviews.items.map((item, index) => (
-												<article class="review-card" style={`--delay:${index * 90}ms`}>
-													<div class="review-card-topline">
-														<div>
-															<h3>{item.author}</h3>
-														</div>
-														<span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-													</div>
-													<p class="review-quote">{item.quote}</p>
-												</article>
-											))
-										}
-									</div>
-									<button
-										type="button"
-										class="button button-primary reviews-action"
-										data-review-open
-									>
-										{content.reviews.actionLabel}
-									</button>
-								</div>
-
-								<div class="reviews-grid">
-									{
-										content.reviews.items.map((item, index) => (
-											<article class="review-card" style={`--delay:${index * 90}ms`}>
-												<div class="review-card-topline">
-													<div>
-														<h3>{item.author}</h3>
-													</div>
-													<span class="review-stars" aria-label="5 out of 5 stars">★★★★★</span>
-												</div>
-												<p class="review-quote">{item.quote}</p>
-											</article>
-										))
-									}
-								</div>
-							</div>
-						</div>
-					</section>
-				)
-			}
-
 			<section class="portfolio-section" id="portfolio">
 				<div class="container">
 					<div class="catalog-heading reveal">
@@ -419,6 +347,62 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 					</div>
 				</div>
 			</section>
+
+			{
+				content.reviews && (
+					<section class="reviews-section">
+						<div class="container">
+							<div class="catalog-heading reveal">
+								<p class="section-kicker">{content.reviews.kicker}</p>
+							</div>
+							<div class="reviews-shell reveal">
+								<div class="reviews-summary">
+									<div class="reviews-headline">
+										<div class="reviews-rating-block">
+											<strong class="reviews-rating-value" data-reviews-rating-value>{content.reviews.stats[0]?.value ?? '5.0 / 5'}</strong>
+											<span class="reviews-rating-label" data-reviews-rating-label>{content.reviews.stats[0]?.label}</span>
+											<div class="reviews-rating-inline">
+												<span class="review-stars reviews-summary-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+												<span class="reviews-count" data-reviews-count>
+													({content.reviews.items.length})
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="reviews-stats">
+										<div class="reviews-stat-card reviews-stat-card-accent">
+											<strong>{content.reviews.stats[1]?.value ?? '100%'}</strong>
+											<span>{content.reviews.stats[1]?.label}</span>
+										</div>
+									</div>
+									<div class="reviews-grid" data-reviews-panel data-initial-reviews={JSON.stringify(initialReviews)}>
+										{
+											content.reviews.items.map((item, index) => (
+												<article class="review-card" style={`--delay:${index * 90}ms`}>
+													<div class="review-card-topline">
+														<div>
+															<h3>{item.author}</h3>
+														</div>
+														<span class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+													</div>
+													<p class="review-quote">{item.quote}</p>
+												</article>
+											))
+										}
+									</div>
+									<button
+										type="button"
+										class="button button-primary reviews-action"
+										data-review-open
+									>
+										{content.reviews.actionLabel}
+									</button>
+								</div>
+							</div>
+						</div>
+					</section>
+				)
+			}
 
 			<section class="contact-section" id="contact">
 				<div class="container">
