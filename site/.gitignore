@@ -17,6 +17,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# runtime user data
+storage/reviews.json
+
 # macOS-specific files
 .DS_Store
 

@@ -562,13 +562,11 @@ h3 {
 	position: absolute;
 	inset: 0;
 	background:
-		linear-gradient(180deg, rgba(248, 244, 237, 0.34), rgba(248, 244, 237, 0.46)),
-		url('/images/corbetti/getapro-facade-a-08.jpg') center/cover no-repeat;
-	filter: brightness(1.06) saturate(1.06) contrast(1.02);
-	opacity: 0.9;
-	transform: scale(1.03);
-	animation: intro-float 18s ease-in-out infinite alternate;
-	transform-origin: center center;
+		linear-gradient(128deg, rgba(185, 106, 52, 0.12) 0%, rgba(185, 106, 52, 0) 34%),
+		linear-gradient(238deg, rgba(22, 63, 110, 0.1) 0%, rgba(22, 63, 110, 0) 40%),
+		linear-gradient(180deg, rgba(250, 247, 241, 0.97), rgba(232, 224, 213, 0.9));
+	opacity: 1;
+	pointer-events: none;
 }
 
 .intro-panel > * {
@@ -725,13 +723,11 @@ h3 {
 	position: absolute;
 	inset: 0;
 	background:
-		linear-gradient(180deg, rgba(248, 244, 237, 0.28), rgba(248, 244, 237, 0.42)),
-		url('/images/corbetti/getapro-house-09.jpg') center/cover no-repeat;
-	filter: brightness(1.04) saturate(1.04) contrast(1.02);
-	opacity: 0.9;
-	transform: scale(1.03);
-	animation: panel-float 20s ease-in-out infinite alternate;
-	transform-origin: center center;
+		linear-gradient(125deg, rgba(185, 106, 52, 0.1) 0%, rgba(185, 106, 52, 0) 38%),
+		linear-gradient(235deg, rgba(22, 63, 110, 0.09) 0%, rgba(22, 63, 110, 0) 42%),
+		linear-gradient(180deg, rgba(248, 244, 237, 0.94), rgba(232, 224, 213, 0.88));
+	opacity: 1;
+	pointer-events: none;
 }
 
 .services-section .service-catalog::before {
@@ -1117,24 +1113,24 @@ h3 {
 	border-radius: var(--radius-lg);
 	overflow: hidden;
 	isolation: isolate;
-	background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.18));
-	border: 1px solid rgba(255, 255, 255, 0.46);
-	box-shadow: 0 18px 38px rgba(25, 19, 12, 0.12);
-	backdrop-filter: blur(10px);
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.46)),
+		linear-gradient(180deg, rgba(247, 243, 236, 0.8), rgba(238, 229, 216, 0.64));
+	border: 1px solid rgba(255, 255, 255, 0.58);
+	box-shadow: 0 18px 36px rgba(25, 19, 12, 0.08);
+	backdrop-filter: blur(4px);
 }
 
 .media-card::before {
 	content: '';
 	position: absolute;
-	inset: -8%;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 0.35rem;
 	z-index: 0;
-	background:
-		linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02)),
-		var(--card-image) center/cover no-repeat;
-	filter: saturate(1.08) contrast(1.03);
-	transform: scale(1.08) translate3d(0, 0, 0);
-	animation: media-card-float var(--float-duration, 16s) ease-in-out infinite;
-	animation-delay: var(--float-delay, 0s);
+	background: linear-gradient(180deg, rgba(185, 106, 52, 0.68), rgba(22, 63, 110, 0.48));
+	opacity: 0.52;
 }
 
 .media-card::after {
@@ -1143,8 +1139,9 @@ h3 {
 	inset: 0;
 	z-index: 1;
 	background:
-		linear-gradient(180deg, rgba(247, 243, 236, 0.5), rgba(247, 243, 236, 0.62)),
-		linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.02));
+		linear-gradient(120deg, rgba(185, 106, 52, 0.06), rgba(185, 106, 52, 0) 42%),
+		linear-gradient(240deg, rgba(22, 63, 110, 0.06), rgba(22, 63, 110, 0) 42%);
+	pointer-events: none;
 }
 
 .media-card > * {
@@ -1158,7 +1155,7 @@ h3 {
 
 .media-card .service-category-text,
 .media-card h3 {
-	text-shadow: 0 1px 10px rgba(255, 255, 255, 0.52);
+	text-shadow: none;
 }
 
 .portfolio-card {
@@ -1787,6 +1784,14 @@ h3 {
 .form-field {
 	display: grid;
 	gap: 0.4rem;
+}
+
+.spam-field {
+	position: absolute;
+	left: -100vw;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
 }
 
 .form-field span,

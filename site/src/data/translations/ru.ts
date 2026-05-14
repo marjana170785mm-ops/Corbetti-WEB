@@ -200,7 +200,7 @@ export const ru: PageContent = {
 				images: portfolioFloorRepairImages,
 			},
 			{
-				title: 'Работы по регипсу',
+				title: 'Работы по гипсу',
 				text: '',
 				images: portfolioRegipsImages,
 			},

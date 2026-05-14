@@ -200,7 +200,7 @@ export const en: PageContent = {
 				images: portfolioFloorRepairImages,
 			},
 			{
-				title: 'Drywall works',
+				title: 'Gypsum works',
 				text: '',
 				images: portfolioRegipsImages,
 			},

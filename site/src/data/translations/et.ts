@@ -200,7 +200,7 @@ export const et: PageContent = {
 				images: portfolioFloorRepairImages,
 			},
 			{
-				title: 'Regipsitööd',
+				title: 'Kipsitööd',
 				text: '',
 				images: portfolioRegipsImages,
 			},

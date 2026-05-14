@@ -461,6 +461,10 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 								<span>{content.contact.form.messageLabel}</span>
 								<textarea name="message" rows="4" required></textarea>
 							</label>
+							<label class="form-field spam-field" aria-hidden="true">
+								<span>Website</span>
+								<input name="companyWebsite" type="text" tabindex="-1" autocomplete="off" />
+							</label>
 							<button
 								class="button button-primary form-submit"
 								type="submit"
@@ -550,6 +554,10 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 						<label class="form-field">
 							<span>{content.reviews.form.messageLabel}</span>
 							<textarea name="message" rows="3" required></textarea>
+						</label>
+						<label class="form-field spam-field" aria-hidden="true">
+							<span>Website</span>
+							<input name="companyWebsite" type="text" tabindex="-1" autocomplete="off" />
 						</label>
 						<button
 							type="submit"
@@ -748,6 +756,7 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 				const location = String(formData.get('location') ?? '').trim();
 				const workType = String(formData.get('workType') ?? '').trim();
 				const message = String(formData.get('message') ?? '').trim();
+				const companyWebsite = String(formData.get('companyWebsite') ?? '').trim();
 
 				if (submitButton instanceof HTMLButtonElement) {
 					submitButton.disabled = true;
@@ -771,6 +780,7 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 							location,
 							workType,
 							message,
+							companyWebsite,
 							pageUrl: window.location.href,
 							locale: document.documentElement.lang || 'ru',
 						}),
@@ -869,6 +879,7 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 				const name = String(formData.get('name') ?? '').trim();
 				const rating = String(formData.get('rating') ?? '').trim();
 				const message = String(formData.get('message') ?? '').trim();
+				const companyWebsite = String(formData.get('companyWebsite') ?? '').trim();
 
 				if (submitButton instanceof HTMLButtonElement) {
 					submitButton.disabled = true;
@@ -889,6 +900,7 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 						body: JSON.stringify({
 							name,
 							message: `${'★'.repeat(Number(rating) || 5)}\n${message}`,
+							companyWebsite,
 							locale: document.documentElement.lang || 'ru',
 						}),
 					});

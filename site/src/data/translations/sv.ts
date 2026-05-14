@@ -200,7 +200,7 @@ export const sv: PageContent = {
 				images: portfolioFloorRepairImages,
 			},
 			{
-				title: 'Gipsskivearbeten',
+				title: 'Gipsarbeten',
 				text: '',
 				images: portfolioRegipsImages,
 			},

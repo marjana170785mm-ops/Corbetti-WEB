@@ -1,4 +1,5 @@
 import { addStoredReview, getStoredReviews } from '../../lib/reviews';
+import { getClientIp, hasHoneypotValue, isRateLimited } from '../../lib/anti-spam';
 
 export const prerender = false;
 
@@ -7,6 +8,7 @@ type ReviewPayload = {
 	message?: string;
 	rating?: number | string;
 	locale?: string;
+	companyWebsite?: string;
 };
 
 const normalizeReviewMessage = (value: string) => {
@@ -45,7 +47,24 @@ export const GET = async () => {
 };
 
 export const POST = async ({ request }: { request: Request }) => {
-	const payload = (await request.json()) as ReviewPayload;
+	let payload: ReviewPayload;
+
+	try {
+		payload = (await request.json()) as ReviewPayload;
+	} catch {
+		return json({ ok: false, error: 'Invalid request.' }, 400);
+	}
+
+	const clientIp = getClientIp(request);
+
+	if (hasHoneypotValue(payload.companyWebsite)) {
+		return json({ ok: true }, 202);
+	}
+
+	if (isRateLimited({ key: `reviews:${clientIp}`, limit: 3, windowMs: 10 * 60 * 1000 })) {
+		return json({ ok: false, error: 'Too many requests. Please try again later.' }, 429);
+	}
+
 	const name = String(payload.name ?? '').trim();
 	const rawMessage = String(payload.message ?? '');
 	const message = normalizeReviewMessage(rawMessage);

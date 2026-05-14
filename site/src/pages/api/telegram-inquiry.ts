@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import { getClientIp, hasHoneypotValue, isRateLimited } from '../../lib/anti-spam';
 
 export const prerender = false;
 
@@ -27,9 +28,10 @@ type InquiryPayload = {
 	message?: string;
 	pageUrl?: string;
 	locale?: string;
+	companyWebsite?: string;
 };
 
-type NormalizedPayload = Required<InquiryPayload>;
+type NormalizedPayload = Required<Omit<InquiryPayload, 'companyWebsite'>>;
 
 const readDotEnv = () => {
 	const envPath = path.resolve(process.cwd(), '.env');
@@ -149,7 +151,33 @@ const sendEmailInquiry = async (payload: NormalizedPayload) => {
 };
 
 export const POST = async ({ request }: { request: Request }) => {
-	const payload = (await request.json()) as InquiryPayload;
+	let payload: InquiryPayload;
+
+	try {
+		payload = (await request.json()) as InquiryPayload;
+	} catch {
+		return new Response(JSON.stringify({ ok: false, error: 'Invalid request.' }), {
+			status: 400,
+			headers: { 'Content-Type': 'application/json' },
+		});
+	}
+
+	const clientIp = getClientIp(request);
+
+	if (hasHoneypotValue(payload.companyWebsite)) {
+		return new Response(JSON.stringify({ ok: true }), {
+			status: 202,
+			headers: { 'Content-Type': 'application/json' },
+		});
+	}
+
+	if (isRateLimited({ key: `inquiry:${clientIp}`, limit: 5, windowMs: 10 * 60 * 1000 })) {
+		return new Response(JSON.stringify({ ok: false, error: 'Too many requests. Please try again later.' }), {
+			status: 429,
+			headers: { 'Content-Type': 'application/json' },
+		});
+	}
+
 	const normalizedPayload = {
 		kind: String(payload.kind ?? '').trim(),
 		name: String(payload.name ?? '').trim(),
@@ -185,7 +213,9 @@ export const POST = async ({ request }: { request: Request }) => {
 			headers: { 'Content-Type': 'application/json' },
 		});
 	} catch (error) {
-		return new Response(JSON.stringify({ ok: false, error: error instanceof Error ? error.message : 'Unknown error' }), {
+		console.error(error);
+
+		return new Response(JSON.stringify({ ok: false, error: 'Could not send the message.' }), {
 			status: 502,
 			headers: { 'Content-Type': 'application/json' },
 		});
