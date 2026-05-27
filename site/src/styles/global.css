@@ -861,6 +861,27 @@ h3 {
 	color: #9b5c32;
 }
 
+.service-page-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: fit-content;
+	margin-top: 1rem;
+	padding: 0.72rem 1rem;
+	border-radius: 0.75rem;
+	background: rgba(23, 74, 121, 0.1);
+	border: 1px solid rgba(23, 74, 121, 0.18);
+	color: #174a79;
+	font-family: 'Oswald', sans-serif;
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.service-page-link:hover {
+	background: rgba(23, 74, 121, 0.16);
+}
+
 .process-section {
 	padding-top: 1.6rem;
 	padding-bottom: 1.6rem;
@@ -1681,6 +1702,13 @@ h3 {
 	border-color: rgba(255, 255, 255, 0.48);
 }
 
+.contact-action-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.8rem;
+	margin-top: 1.2rem;
+}
+
 .contact-certificates {
 	display: grid;
 	gap: 0.28rem;
@@ -1931,6 +1959,143 @@ h3 {
 	line-height: 1.7;
 }
 
+.service-hero-section {
+	padding-top: 1.4rem;
+	padding-bottom: 1.8rem;
+}
+
+.service-hero {
+	display: grid;
+	grid-template-columns: minmax(0, 0.96fr) minmax(18rem, 0.72fr);
+	align-items: center;
+	gap: 2rem;
+}
+
+.service-hero-copy {
+	padding: 2.2rem;
+	border-radius: 1.35rem;
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.62)),
+		linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.42));
+	border: 1px solid rgba(255, 255, 255, 0.72);
+	box-shadow: var(--shadow);
+}
+
+.service-hero-copy h1 {
+	max-width: 12ch;
+	color: #174a79;
+}
+
+.service-hero-text {
+	margin-left: 0;
+	color: #2b261f;
+	text-shadow: none;
+}
+
+.service-hero-media {
+	min-height: 30rem;
+	border-radius: 1.35rem;
+	overflow: hidden;
+	box-shadow: var(--shadow);
+	border: 1px solid rgba(255, 255, 255, 0.72);
+	background: #171717;
+}
+
+.service-hero-media img {
+	width: 100%;
+	height: 100%;
+	min-height: inherit;
+	object-fit: cover;
+}
+
+.service-detail-section {
+	padding-top: 1.6rem;
+	padding-bottom: 1.6rem;
+}
+
+.service-detail-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+	gap: 1.25rem;
+	align-items: stretch;
+}
+
+.service-overview {
+	width: 100%;
+}
+
+.service-work-list {
+	position: relative;
+	display: grid;
+	align-content: start;
+	padding: 2rem;
+	border-radius: 1.2rem;
+	overflow: hidden;
+	background:
+		linear-gradient(125deg, rgba(185, 106, 52, 0.1) 0%, rgba(185, 106, 52, 0) 38%),
+		linear-gradient(235deg, rgba(22, 63, 110, 0.09) 0%, rgba(22, 63, 110, 0) 42%),
+		linear-gradient(180deg, rgba(248, 244, 237, 0.94), rgba(232, 224, 213, 0.88));
+	border: 1px solid rgba(255, 255, 255, 0.72);
+	box-shadow: var(--shadow);
+}
+
+.service-work-list ul {
+	display: grid;
+	gap: 0.75rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.service-work-list li {
+	position: relative;
+	padding-left: 1.25rem;
+	color: #2b261f;
+	font-size: 1.04rem;
+	font-weight: 700;
+	line-height: 1.5;
+}
+
+.service-work-list li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.65rem;
+	width: 0.45rem;
+	height: 0.45rem;
+	border-radius: 999px;
+	background: #174a79;
+}
+
+.service-gallery {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 0.9rem;
+	padding: 1.1rem;
+	border-radius: 1.35rem;
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.58)),
+		linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.3));
+	border: 1px solid rgba(255, 255, 255, 0.7);
+	box-shadow: var(--shadow);
+}
+
+.service-gallery img {
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	border-radius: 0.85rem;
+}
+
+.service-faq-grid {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.service-contact-button {
+	width: 100%;
+	margin-bottom: 0.8rem;
+}
+
 .footer-inner {
 	justify-content: space-between;
 	gap: 1rem;
@@ -2025,8 +2190,14 @@ h3 {
 
 	.intro-metrics,
 	.contact-shell,
-	.reviews-shell {
+	.reviews-shell,
+	.service-hero,
+	.service-detail-grid {
 		grid-template-columns: 1fr;
+	}
+
+	.service-hero-media {
+		min-height: 24rem;
 	}
 }
 
@@ -2059,6 +2230,11 @@ h3 {
 	}
 
 	.client-catalog {
+		grid-template-columns: 1fr;
+	}
+
+	.service-gallery,
+	.service-faq-grid {
 		grid-template-columns: 1fr;
 	}
 
@@ -2139,8 +2315,14 @@ h3 {
 	}
 
 	.intro-panel,
-	.contact-shell {
+	.contact-shell,
+	.service-hero-copy,
+	.service-work-list {
 		padding: 1.35rem;
+	}
+
+	.service-hero-media {
+		min-height: 18rem;
 	}
 
 	.faq-category {

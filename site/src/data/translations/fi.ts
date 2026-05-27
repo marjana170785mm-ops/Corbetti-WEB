@@ -1,5 +1,17 @@
 import type { PageContent } from '../types';
-import { portfolioFacadeImages, portfolioHouseImages, portfolioInteriorImages } from '../portfolio-images';
+import {
+	portfolioConcreteImages,
+	portfolioDemolitionImages,
+	portfolioFacadeImages,
+	portfolioFloorRepairImages,
+	portfolioHeatBoxImages,
+	portfolioHouseImages,
+	portfolioPremisesRepairImages,
+	portfolioRegipsImages,
+	portfolioScaffoldImages,
+	portfolioToljanImages,
+	portfolioWindowInstallImages,
+} from '../portfolio-images';
 
 export const fi: PageContent = {
 	langLabel: 'FI',
@@ -7,10 +19,12 @@ export const fi: PageContent = {
 	metaDescription:
 		'CORBETTI OÜ toteuttaa rakennus-, remontti-, julkisivu-, betoni- ja sisäviimeistelytöitä yksityisille asiakkaille, yrityksille ja taloyhtiöille.',
 	nav: {
+		home: 'Etusivu',
 		services: 'Palvelut',
 		portfolio: 'Referenssit',
 		process: 'Prosessi',
 		clients: 'Asiakkaat',
+		faq: 'FAQ',
 		contact: 'Yhteydenotto',
 	},
 	hero: {
@@ -81,6 +95,44 @@ export const fi: PageContent = {
 			{ title: 'Taloyhtiöt', text: 'Yhteiset tilat, julkisivut, porraskäytävät ja rakennuksen parannukset.' },
 		],
 	},
+	reviews: {
+		kicker: 'Arvostelut',
+		title: '',
+		body: '',
+		sourceLabel: '',
+		actionLabel: 'Jätä arvostelu',
+		stats: [
+			{ value: '5.0 / 5', label: 'keskiarvo' },
+			{ value: '100%', label: 'positiivisia arvosteluja' },
+			{ value: '2', label: 'julkista arvostelua' },
+		],
+		items: [
+			{
+				author: 'Anna-Elina O.',
+				task: 'Keittiövalaisimen asennus',
+				time: '2 vuotta sitten',
+				quote: 'Suur aitäh tegijale hea töö eest. Soovitan tegijat teistele klientidele.',
+			},
+			{
+				author: 'Andrei',
+				task: 'Muu työ',
+				time: '2 vuotta sitten',
+				quote: 'Suurepärane professionaalide meeskond, soovitan. Отличьная команда проффесионалов ,рекомендую',
+			},
+		],
+		form: {
+			title: 'Jätä arvostelu',
+			nameLabel: 'Nimesi',
+			ratingLabel: 'Arvosana',
+			messageLabel: 'Arvostelusi',
+			submitLabel: 'Lähetä arvostelu',
+			submittingLabel: 'Lähetetään...',
+			successMessage: 'Kiitos. Arvostelusi on lähetetty.',
+			errorMessage: 'Arvostelun lähetys epäonnistui. Yritä uudelleen.',
+			successTitle: 'Kiitos arvostelusta',
+			successBody: 'Saimme viestisi ja tarkistamme arvostelun pian.',
+		},
+	},
 	process: {
 		kicker: 'Toimintatapa',
 		title: 'Selkeä eteneminen kyselystä luovutukseen',
@@ -90,25 +142,153 @@ export const fi: PageContent = {
 			{ title: '3. Toteutus', text: 'Rakennus- ja remonttityöt etenevät sovittujen vaiheiden mukaan.' },
 			{ title: '4. Luovutus', text: 'Tarkistamme lopputuloksen ja viimeistelemme kohteen käyttövalmiiksi.' },
 		],
+		certificates: {
+			title: 'Sertifikaattimme',
+			items: [
+				{ name: 'Arbetssakerhetskort', number: '1489679211460' },
+				{ name: 'Hot Work Certificate', number: '12204841124304' },
+			],
+		},
 	},
 	portfolio: {
 		kicker: 'Työmme',
 		title: 'CORBETTI OÜ:n oikeita kohteita',
 		items: [
 			{
-				title: 'Pientalo ja tärkeimmät rakennusvaiheet',
-				text: 'Yksi kohde kymmenen kuvan kokonaisuutena julkisivusta portaisiin ja sisätöihin.',
+				title: 'Omakotitalo: rakennusvaiheet',
+				text: '',
 				images: portfolioHouseImages,
 			},
 			{
-				title: 'Katot, väliseinät ja tekniset yksityiskohdat',
-				text: 'Työvaihekuvia kattorakenteista, eristyksestä, väliseinistä ja teknisestä valmistelusta.',
-				images: portfolioInteriorImages,
+				title: 'Julkisivutyöt',
+				text: '',
+				images: portfolioFacadeImages,
 			},
 			{
-				title: 'Julkisivut, aukot ja sisäviimeistely',
-				text: 'Lisää oikeita CORBETTI OÜ:n työkuvia ulko-osista ja pidemmälle edenneistä sisätiloista.',
-				images: portfolioFacadeImages,
+				title: 'Rakennustelinepalvelut',
+				text: '',
+				images: portfolioScaffoldImages,
+			},
+			{
+				title: 'Ikkunoiden asennus',
+				text: '',
+				images: portfolioWindowInstallImages,
+			},
+			{
+				title: 'Betonityöt',
+				text: '',
+				images: portfolioConcreteImages,
+			},
+			{
+				title: 'Purkutyöt',
+				text: '',
+				images: portfolioDemolitionImages,
+			},
+			{
+				title: 'Lämmönjakohuoneen kaappien asennus',
+				text: '',
+				images: portfolioHeatBoxImages,
+			},
+			{
+				title: 'Tilojen remontointi',
+				text: '',
+				images: portfolioPremisesRepairImages,
+			},
+			{
+				title: 'Lattian korjaus',
+				text: '',
+				images: portfolioFloorRepairImages,
+			},
+			{
+				title: 'Kipsityöt',
+				text: '',
+				images: portfolioRegipsImages,
+			},
+			{
+				title: 'Rakentamisen ja viimeistelyn vaiheet',
+				text: '',
+				images: portfolioToljanImages,
+			},
+		],
+	},
+	faq: {
+		kicker: 'Kysymykset ja vastaukset',
+		title: '',
+		body: '',
+		categories: [
+			{
+				title: 'Sähkötyöt',
+				items: [
+					{ question: 'Miten pistorasia asennetaan oikein?', answer: 'Työ alkaa virran katkaisulla, johtojen valmistelulla ja oikealla kytkennällä. Virheet voivat aiheuttaa oikosulun tai tulipaloriskin, joten työ kannattaa antaa ammattilaiselle.' },
+					{ question: 'Voiko valokytkimen vaihtaa itse?', answer: 'Se on mahdollista perustiedoilla ja turvaohjeita noudattaen. Epävarmassa tilanteessa on parempi kutsua asentaja.' },
+					{ question: 'Mistä tietää, että johdotus on vanha?', answer: 'Merkkejä ovat sulakkeiden laukeaminen, kuumenevat pistorasiat, vanhat alumiinijohdot, kipinät tai palaneen haju.' },
+					{ question: 'Paljonko uusi sähköjohdotus maksaa?', answer: 'Hinta riippuu pinta-alasta, pisteiden määrästä ja työn vaativuudesta. Se voi vaihdella yksinkertaisesta ratkaisusta täydelliseen avaimet käteen -uusimiseen. Tarkka hinta selviää katselmuksen jälkeen.' },
+					{ question: 'Mihin pistorasiat kannattaa sijoittaa keittiössä?', answer: 'Pistorasioiden tulisi olla kodinkoneiden lähellä: jääkaappi, liesi, vedenkeitin ja mikroaaltouuni. Riittävä määrä kannattaa suunnitella etukäteen, jotta jatkojohtoja ei tarvita myöhemmin.' },
+					{ question: 'Kuinka monta pistorasiaa huoneeseen tarvitaan?', answer: 'Vähintään 4-6, mutta yleensä enemmän on parempi televisiolle, latureille ja valaistukselle. Nykyaikaiset kodit tarvitsevat enemmän pistorasioita kuin vanhat ratkaisut tarjosivat.' },
+					{ question: 'Miten johdot piilotetaan seinän sisään?', answer: 'Johdot asennetaan seinään tehtyihin uriin ja peitetään sen jälkeen rappauksella. Työ on pölyinen ja teknisesti vaativa, joten se vaatii työkaluja ja kokemusta.' },
+				],
+			},
+			{
+				title: 'Seinät ja viimeistely',
+				items: [
+					{ question: 'Miten seinät valmistellaan maalausta varten?', answer: 'Vanha pinta poistetaan, seinä tasoitetaan, kitataan ja pohjustetaan. Ilman valmistelua maalipinta ei jää tasaiseksi.' },
+					{ question: 'Tarvitaanko pohjamaalia?', answer: 'Kyllä. Pohjustus parantaa tartuntaa ja vähentää maalin kulutusta.' },
+					{ question: 'Miten seinät tasoitetaan?', answer: 'Suuret epätasaisuudet korjataan rappauksella, pienemmät kitillä. Joissain kohteissa käytetään kipsilevyratkaisuja.' },
+					{ question: 'Miten seinät kitataan oikein?', answer: 'Kitti levitetään yleensä useassa kerroksessa ja kerrosten välissä hiotaan. Tärkeää on pitää pinta suorana ja kerrospaksuus hallinnassa.' },
+					{ question: 'Miten kitti sekoitetaan ilman paakkuja?', answer: 'Jauhe kaadetaan veteen, ei päinvastoin, ja sekoitetaan vispilällä. Myös oikeat mittasuhteet ovat tärkeitä.' },
+					{ question: 'Kuinka monta kittikerrosta tarvitaan?', answer: 'Yleensä 2-3 kerrosta: pohjakerros ja viimeistelykerros. Tarkka määrä riippuu seinien kunnosta.' },
+					{ question: 'Kumpi on parempi: tapetti vai maali?', answer: 'Maali näyttää modernilta ja on helppo päivittää myöhemmin. Tapetti peittää pienet virheet helpommin. Valinta riippuu budjetista ja tavoitteesta.' },
+				],
+			},
+			{
+				title: 'Laatoitus',
+				items: [
+					{ question: 'Miten laatat asennetaan suoraan?', answer: 'Alustan pitää olla tasainen, ja työssä tarvitaan vesivaakaa sekä laattaristejä. Ilman kokemusta täysin siistin lopputuloksen saavuttaminen on vaikeaa.' },
+					{ question: 'Miten valita laatat kylpyhuoneeseen?', answer: 'Tärkeää on huomioida kosteudenkesto, liukastumisen esto ja kestävyys.' },
+					{ question: 'Miten laatta leikataan ilman lohkeamia?', answer: 'Työhön käytetään laattaleikkuria tai muuta sopivaa erikoistyökalua. Ilman oikeaa työkalua materiaali vaurioituu helposti.' },
+					{ question: 'Paljonko laatoitus maksaa?', answer: 'Hinta riippuu laatan koosta, ladonnan vaativuudesta ja alustan valmistelusta. Yleensä hinta lasketaan neliömetrien mukaan.' },
+					{ question: 'Mitä tehdä, jos laatta on irronnut?', answer: 'Vanha liima poistetaan, pinta puhdistetaan ja laatta kiinnitetään uudelleen. Jos ongelma on laajempi, tarvitaan todennäköisesti suurempi korjaus.' },
+				],
+			},
+			{
+				title: 'Lattiat',
+				items: [
+					{ question: 'Pitääkö lattia tasoittaa ennen asennusta?', answer: 'Kyllä. Epätasainen alusta voi aiheuttaa narinaa, rakoja ja materiaalivaurioita.' },
+					{ question: 'Kumpi on parempi: laminaatti vai laatta?', answer: 'Laminaatti on lämpimämpi, laatta kestävämpi ja kosteutta paremmin sietävä. Valinta riippuu tilasta ja käytöstä.' },
+					{ question: 'Mitä tehdä, jos lattia narisee?', answer: 'Syy on usein epätasainen alusta tai huono asennus. Tarvitaan osittainen tai laajempi korjaus.' },
+					{ question: 'Miten laminaatti asennetaan?', answer: 'Laminaatti asennetaan tasaiselle alustalle alusmateriaalin kanssa, ja seinien viereen jätetään elämisvara. Väärä asennus voi myöhemmin aiheuttaa turpoamista.' },
+					{ question: 'Miten lattialämmitys valitaan?', answer: 'Vaihtoehtoja ovat sähköinen ja vesikiertoinen lattialämmitys. Valinta riippuu tilasta ja budjetista.' },
+				],
+			},
+			{
+				title: 'Putki- ja saniteettityöt',
+				items: [
+					{ question: 'Miten WC-istuin asennetaan?', answer: 'Asennus vaatii tarkan liitoksen viemäriin ja oikean tiivistyksen. Virheet voivat aiheuttaa vuotoja.' },
+					{ question: 'Miten hana vaihdetaan?', answer: 'Vesi suljetaan, vanha hana irrotetaan ja uusi asennetaan tiivisteiden kanssa. Työ ei ole kovin monimutkainen, mutta se vaatii huolellisuutta.' },
+					{ question: 'Miksi hana vuotaa ja mitä tehdä?', answer: 'Useimmiten syynä ovat kuluneet tiivisteet tai patruuna. Nämä osat pitää vaihtaa.' },
+					{ question: 'Miten putket puhdistetaan?', answer: 'Pieniin tukoksiin voivat auttaa kotikäyttöiset aineet, mutta vakavammissa tukoksissa kannattaa kutsua ammattilainen.' },
+					{ question: 'Paljonko saniteettilaitteiden vaihto maksaa?', answer: 'Hinta riippuu työn määrästä ja valituista laitteista. Kustannus lasketaan tapauskohtaisesti.' },
+				],
+			},
+			{
+				title: 'Yleinen remontti',
+				items: [
+					{ question: 'Mistä asuntoremontti kannattaa aloittaa?', answer: 'Suunnitelmasta, budjetista ja kohteen kunnon arvioinnista. Näin työjärjestys pysyy selkeänä.' },
+					{ question: 'Voiko remonttia tehdä talvella?', answer: 'Kyllä, mutta osa materiaaleista ja lämpötilaolosuhteista voi asettaa rajoituksia.' },
+					{ question: 'Milloin remontin hinta voidaan arvioida?', answer: 'Tarkempi hinta voidaan antaa, kun työn laajuus, pinnat ja materiaalit on arvioitu kohteessa.' },
+					{ question: 'Missä järjestyksessä remontti tehdään?', answer: 'Ensin tehdään purku- ja pohjatyöt, sitten viimeistely: seinät, lattia ja katto.' },
+					{ question: 'Miten rakennusfirma kannattaa valita?', answer: 'Kannattaa katsoa kokemusta, arvosteluja, sopimusehtoja ja takuuta.' },
+				],
+			},
+			{
+				title: 'Hyödylliset pienet työt',
+				items: [
+					{ question: 'Miten hylly kiinnitetään seinään?', answer: 'Valitse seinätyypille sopivat kiinnikkeet ja merkitse reiät tarkasti ennen poraamista.' },
+					{ question: 'Miten seinään porataan ilman halkeamia?', answer: 'Käytä sopivaa poranterää ja vältä liiallista painetta.' },
+					{ question: 'Miten seinän halkeama korjataan?', answer: 'Halkeama puhdistetaan, pohjustetaan ja täytetään kitillä.' },
+					{ question: 'Miten vanha tapetti poistetaan?', answer: 'Tapetti kostutetaan vedellä tai erikoisliuoksella ja poistetaan lastalla.' },
+					{ question: 'Miten katto maalataan ilman raitoja?', answer: 'Käytä laadukasta telaa ja levitä maali tasaisesti useassa kerroksessa.' },
+				],
 			},
 		],
 	},
@@ -116,6 +296,11 @@ export const fi: PageContent = {
 		kicker: 'Seuraava kohde',
 		title: 'Keskustellaan projektistasi',
 		body: 'Kerro kohteen sijainti, työn tyyppi ja aikataulu. CORBETTI OÜ vastaanottaa yhteydenotot puhelimitse, Telegramissa ja sähköpostitse.',
+		phoneLabel: 'Puhelin',
+		phone: '+37256333338',
+		emailLabel: 'Sähköposti',
+		email: 'corbetti.group@gmail.com',
+		emailAction: 'Kirjoita sähköpostilla',
 		primaryAction: 'Soita',
 		primaryHref: 'tel:+37256333338',
 		secondaryAction: 'Kirjoita Telegramissa',
@@ -128,7 +313,11 @@ export const fi: PageContent = {
 			workTypeLabel: 'Työn tyyppi',
 			messageLabel: 'Kuvaile työtä',
 			submitLabel: 'Lähetä Telegramiin',
-			telegramNotice: 'Lomake valmistelee lähetettävän Telegram-viestin.',
+			submittingLabel: 'Lähetetään...',
+			successTitle: 'Kiitos',
+			successMessage: 'Kysely on lähetetty. Otamme yhteyttä pian.',
+			errorMessage: 'Kyselyn lähetys epäonnistui. Yritä uudelleen tai kirjoita Telegramissa.',
+			telegramNotice: 'Lomake lähettää kyselyn suoraan Telegramiin.',
 		},
 		cards: [
 			{ label: 'Puhelin', value: '+372 5633 3338' },

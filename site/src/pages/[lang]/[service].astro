@@ -1,0 +1,382 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { locales, siteContent, type Locale } from '../../data/site';
+import { findServicePage, servicePagesByLocale } from '../../data/service-pages';
+
+export function getStaticPaths() {
+	return locales.flatMap((locale) =>
+		servicePagesByLocale[locale].map((page) => ({ params: { lang: locale, service: page.slug } })),
+	);
+}
+
+const lang = Astro.params.lang as Locale;
+const slug = Astro.params.service;
+
+if (!locales.includes(lang)) {
+	return Astro.redirect('/et/');
+}
+
+const page = findServicePage(lang, slug);
+
+if (!page) {
+	return Astro.redirect(`/${lang}/`);
+}
+
+const content = siteContent[lang];
+const canonicalPath = `/${lang}/${page.slug}/`;
+const pageUrl = new URL(canonicalPath, Astro.site ?? Astro.url).toString();
+const heroImage = page.heroImage;
+const galleryImages = page.galleryImages.filter(Boolean);
+const alternates = [
+	...locales.map((locale) => ({
+		lang: locale,
+		href: `/${locale}/${servicePagesByLocale[locale].find((candidate) => candidate.key === page.key)?.slug}/`,
+	})),
+];
+const localizedServicePaths = Object.fromEntries(alternates.map((alternate) => [alternate.lang, alternate.href]));
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Service',
+		name: page.title,
+		description: page.metaDescription,
+		url: pageUrl,
+		image: new URL(heroImage, Astro.site ?? Astro.url).toString(),
+		provider: {
+			'@type': 'GeneralContractor',
+			name: 'CORBETTI OÜ',
+			url: new URL('/', Astro.site ?? Astro.url).toString(),
+			telephone: content.contact.phone,
+			email: content.contact.email,
+		},
+		areaServed: {
+			'@type': 'Country',
+			name: 'Estonia',
+		},
+		serviceType: page.serviceType,
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: page.faqItems.map((item) => ({
+			'@type': 'Question',
+			name: item.question,
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: item.answer,
+			},
+		})),
+	},
+];
+---
+
+<BaseLayout
+	lang={lang}
+	title={page.metaTitle}
+	description={page.metaDescription}
+	alternates={alternates}
+	canonicalPath={canonicalPath}
+	xDefaultPath={localizedServicePaths.et}
+	image={heroImage}
+	structuredData={structuredData}
+>
+	<div class="page-shell service-page" id="top">
+		<header class="site-header">
+			<div class="container header-inner">
+				<a class="brand" href={`/${lang}/`}>
+					<span class="brand-mark" aria-hidden="true">
+						<img
+							src="/images/corbetti/branding/corbetti-mark-c-web-v3.png"
+							alt=""
+							class="brand-mark-image"
+							loading="eager"
+							decoding="async"
+						/>
+					</span>
+					<span class="brand-copy">
+						<strong>CORBETTI OÜ</strong>
+						<small>{content.hero.eyebrow}</small>
+					</span>
+				</a>
+
+				<nav class="main-nav" aria-label="Primary">
+					<a href={`/${lang}/#services`}>{content.nav.services}</a>
+					<a href="#portfolio">{content.nav.portfolio}</a>
+					<a href="#faq">{content.nav.faq}</a>
+					<a href="#contact">{content.nav.contact}</a>
+				</nav>
+
+				<a class="header-phone" href="tel:+37256333338">+372 5633 3338</a>
+
+				<div class="language-switcher" aria-label="Languages">
+					{
+						locales.map((locale) => (
+							<a
+								class:list={['lang-pill', { active: locale === lang }]}
+								href={localizedServicePaths[locale]}
+							>
+								{siteContent[locale].langLabel}
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</header>
+
+		<main>
+			<section class="service-hero-section">
+				<div class="container service-hero">
+					<div class="service-hero-copy reveal">
+						<p class="section-kicker">{page.eyebrow}</p>
+						<h1>{page.title}</h1>
+						<p class="hero-text service-hero-text">{page.description}</p>
+						<div class="hero-actions">
+							<a class="button button-primary" href="#contact">{page.primaryCta}</a>
+							<a class="button button-secondary" href="#portfolio">{page.secondaryCta}</a>
+						</div>
+					</div>
+					<div class="service-hero-media reveal">
+						<img src={heroImage} alt={page.title} loading="eager" decoding="async" />
+					</div>
+				</div>
+			</section>
+
+			<section class="service-detail-section">
+				<div class="container service-detail-grid">
+					<div class="intro-panel service-overview reveal">
+						<p class="section-kicker">{page.overviewTitle}</p>
+						<p class="section-text intro-body">{page.overview}</p>
+						<div class="badge-row">
+							{page.benefits.map((benefit) => <span class="info-badge">{benefit}</span>)}
+						</div>
+					</div>
+
+					<div class="service-work-list reveal">
+						<p class="section-kicker">{page.workTitle}</p>
+						<ul>
+							{page.workItems.map((item) => <li>{item}</li>)}
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section class="process-section">
+				<div class="container">
+					<div class="catalog-heading reveal">
+						<p class="section-kicker">{page.processTitle}</p>
+					</div>
+					<div class="service-catalog process-catalog">
+						{
+							page.processSteps.map((step, index) => (
+								<article class="service-category process-category media-card reveal" style={`--delay:${index * 70}ms`}>
+									<div class="service-category-heading">
+										<h3>{step.title}</h3>
+									</div>
+									<p class="service-category-text">{step.text}</p>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="portfolio-section" id="portfolio">
+				<div class="container">
+					<div class="catalog-heading reveal">
+						<p class="section-kicker">{page.portfolioTitle}</p>
+					</div>
+					<div class="service-gallery">
+						{galleryImages.map((image, index) => <img src={image} alt={`${page.portfolioTitle} ${index + 1}`} loading="lazy" />)}
+					</div>
+				</div>
+			</section>
+
+			<section class="faq-section" id="faq">
+				<div class="container">
+					<div class="faq-intro reveal">
+						<p class="section-kicker">{page.faqTitle}</p>
+					</div>
+					<div class="faq-grid service-faq-grid">
+						{
+							page.faqItems.map((item) => (
+								<details class="faq-item reveal">
+									<summary>{item.question}</summary>
+									<p>{item.answer}</p>
+								</details>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="contact-section" id="contact">
+				<div class="container contact-shell">
+					<div class="contact-copy reveal">
+						<p class="section-kicker">{content.contact.kicker}</p>
+						<p class="contact-lead">{page.contactTitle}</p>
+						<p class="section-text">{page.contactText}</p>
+						<p class="contact-email">
+							<span>{content.contact.emailLabel}</span>
+							<a href={`mailto:${content.contact.email}`}>{content.contact.email}</a>
+						</p>
+						<p class="contact-email">
+							<span>{content.contact.phoneLabel}</span>
+							<a href={content.contact.primaryHref}>{content.contact.phone}</a>
+						</p>
+					</div>
+					<div class="contact-cards">
+						<form class="contact-form reveal" data-inquiry-form>
+							<h3>{content.contact.form.title}</h3>
+							<label class="form-field">
+								<span>{content.contact.form.nameLabel}</span>
+								<input name="name" type="text" autocomplete="name" required />
+							</label>
+							<label class="form-field">
+								<span>{content.contact.form.phoneLabel}</span>
+								<input name="phone" type="tel" autocomplete="tel" required />
+							</label>
+							<label class="form-field">
+								<span>{content.contact.form.locationLabel}</span>
+								<input name="location" type="text" autocomplete="street-address" />
+							</label>
+							<label class="form-field">
+								<span>{content.contact.form.workTypeLabel}</span>
+								<input name="workType" type="text" />
+							</label>
+							<label class="form-field">
+								<span>{content.contact.form.messageLabel}</span>
+								<textarea name="message" rows="4" required></textarea>
+							</label>
+							<label class="form-field spam-field" aria-hidden="true">
+								<span>Website</span>
+								<input name="companyWebsite" type="text" tabindex="-1" autocomplete="off" />
+							</label>
+							<button
+								class="button button-primary form-submit"
+								type="submit"
+								data-submit-label={content.contact.form.submitLabel}
+								data-submitting-label={content.contact.form.submittingLabel}
+							>
+								{content.contact.form.submitLabel}
+							</button>
+							<p
+								class="form-note"
+								data-form-note
+								data-default-note={content.contact.form.telegramNotice}
+								data-success-message={content.contact.form.successMessage}
+								data-error-message={content.contact.form.errorMessage}
+							>
+								{content.contact.form.telegramNotice}
+							</p>
+						</form>
+						<dialog class="inquiry-dialog" data-inquiry-dialog>
+							<div class="inquiry-dialog-inner">
+								<h3>{content.contact.form.successTitle}</h3>
+								<p data-inquiry-dialog-message>{content.contact.form.successMessage}</p>
+								<button type="button" class="button button-primary" data-inquiry-dialog-close>
+									OK
+								</button>
+							</div>
+						</dialog>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="site-footer">
+			<div class="container footer-inner">
+				<div>
+					<strong>{content.footer.company}</strong>
+					<p>{content.footer.rights}</p>
+				</div>
+				<a href={`/${lang}/`}>{content.nav.home}</a>
+			</div>
+		</footer>
+	</div>
+
+	<script is:inline>
+		const inquiryForm = document.querySelector('[data-inquiry-form]');
+		const inquiryDialog = document.querySelector('[data-inquiry-dialog]');
+		const inquiryDialogClose = document.querySelector('[data-inquiry-dialog-close]');
+
+		if (inquiryForm) {
+			const submitButton = inquiryForm.querySelector('.form-submit');
+			const formNote = inquiryForm.querySelector('[data-form-note]');
+
+			inquiryForm.addEventListener('submit', async (event) => {
+				event.preventDefault();
+
+				const formData = new FormData(inquiryForm);
+				const name = String(formData.get('name') ?? '').trim();
+				const phone = String(formData.get('phone') ?? '').trim();
+				const location = String(formData.get('location') ?? '').trim();
+				const workType = String(formData.get('workType') ?? '').trim();
+				const message = String(formData.get('message') ?? '').trim();
+				const companyWebsite = String(formData.get('companyWebsite') ?? '').trim();
+
+				if (submitButton instanceof HTMLButtonElement) {
+					submitButton.disabled = true;
+					submitButton.textContent = submitButton.dataset.submittingLabel ?? 'Sending...';
+				}
+
+				if (formNote instanceof HTMLElement) {
+					formNote.textContent = formNote.dataset.defaultNote ?? '';
+					formNote.dataset.state = 'idle';
+				}
+
+				try {
+					const response = await fetch('/api/telegram-inquiry', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({
+							name,
+							phone,
+							location,
+							workType,
+							message,
+							companyWebsite,
+							pageUrl: window.location.href,
+							locale: document.documentElement.lang || 'ru',
+						}),
+					});
+
+					if (!response.ok) {
+						throw new Error(`Request failed with status ${response.status}`);
+					}
+
+					inquiryForm.reset();
+
+					if (formNote instanceof HTMLElement) {
+						formNote.textContent = formNote.dataset.successMessage ?? '';
+						formNote.dataset.state = 'success';
+					}
+
+					if (inquiryDialog instanceof HTMLDialogElement) {
+						inquiryDialog.showModal();
+					}
+				} catch (error) {
+					console.error(error);
+
+					if (formNote instanceof HTMLElement) {
+						formNote.textContent = formNote.dataset.errorMessage ?? '';
+						formNote.dataset.state = 'error';
+					}
+				} finally {
+					if (submitButton instanceof HTMLButtonElement) {
+						submitButton.disabled = false;
+						submitButton.textContent = submitButton.dataset.submitLabel ?? 'Submit';
+					}
+				}
+			});
+		}
+
+		inquiryDialogClose?.addEventListener('click', () => inquiryDialog?.close());
+		inquiryDialog?.addEventListener('click', (event) => {
+			if (event.target === inquiryDialog) {
+				inquiryDialog.close();
+			}
+		});
+	</script>
+</BaseLayout>

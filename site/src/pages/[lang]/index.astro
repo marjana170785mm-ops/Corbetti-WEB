@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { locales, siteContent, type Locale } from '../../data/site';
+import { servicePagePaths } from '../../data/service-pages';
 
 export function getStaticPaths() {
 	return locales.map((lang) => ({ params: { lang } }));
@@ -17,8 +18,60 @@ const alternates = locales.map((locale) => ({
 	lang: locale,
 	href: `/${locale}/`,
 }));
+const canonicalPath = `/${lang}/`;
+const pageUrl = new URL(canonicalPath, Astro.site ?? Astro.url).toString();
+const heroImage = '/images/corbetti/getapro-house-cover.jpg';
+const heroImageUrl = new URL(heroImage, Astro.site ?? Astro.url).toString();
 const emailAddress = content.contact.email;
 const mailtoHref = `mailto:${emailAddress}`;
+const faqItems = content.faq.categories.flatMap((category) => category.items);
+const organizationName = 'CORBETTI OÜ';
+const serviceLinkLabels: Record<Locale, string> = {
+	et: 'Ava teenuse leht',
+	ru: 'Открыть страницу услуги',
+	en: 'Open service page',
+	fi: 'Avaa palvelusivu',
+	sv: 'Öppna tjänstesidan',
+};
+const serviceCardTargets = ['construction', 'renovation', 'concrete', 'facade', 'renovation', 'windows'];
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'GeneralContractor',
+		name: organizationName,
+		url: pageUrl,
+		image: heroImageUrl,
+		logo: new URL('/images/corbetti/branding/corbetti-mark-c-web-v3.png', Astro.site ?? Astro.url).toString(),
+		description: content.metaDescription,
+		telephone: content.contact.phone,
+		email: content.contact.email,
+		areaServed: {
+			'@type': 'Country',
+			name: 'Estonia',
+		},
+		knowsLanguage: ['et', 'ru', 'en', 'fi', 'sv'],
+		sameAs: [content.contact.secondaryHref],
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: organizationName,
+		url: new URL('/', Astro.site ?? Astro.url).toString(),
+		inLanguage: lang,
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: faqItems.map((item) => ({
+			'@type': 'Question',
+			name: item.question,
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: item.answer,
+			},
+		})),
+	},
+];
 
 const processCardImages = [
 	'/images/corbetti/getapro-house-frame-01.jpg',
@@ -46,7 +99,9 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 	title={content.metaTitle}
 	description={content.metaDescription}
 	alternates={alternates}
-	canonicalPath={`/${lang}/`}
+	canonicalPath={canonicalPath}
+	image={heroImage}
+	structuredData={structuredData}
 >
 	<div class="page-shell" id="top">
 		<header class="site-header">
@@ -178,6 +233,13 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 									<ul class="service-category-list">
 										{card.items.map((item) => <li>{item}</li>)}
 									</ul>
+									{
+										servicePagePaths[lang][serviceCardTargets[index]] && (
+											<a class="service-page-link" href={servicePagePaths[lang][serviceCardTargets[index]]}>
+												{serviceLinkLabels[lang]}
+											</a>
+										)
+									}
 								</details>
 							))
 						}
@@ -422,6 +484,17 @@ const initialReviews = (content.reviews?.items ?? []).map((item, index) => ({
 							<span>{content.contact.phoneLabel}</span>
 							<a href={content.contact.primaryHref}>{content.contact.phone}</a>
 						</p>
+						<div class="contact-action-row">
+							<a class="button button-primary" href={content.contact.primaryHref}>{content.contact.primaryAction}</a>
+							<a
+								class="button button-secondary"
+								href={content.contact.secondaryHref}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{content.contact.secondaryAction}
+							</a>
+						</div>
 						{
 							content.process.certificates && (
 								<div class="contact-certificates">
