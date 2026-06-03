@@ -2,6 +2,14 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { locales, siteContent, type Locale } from '../../data/site';
 import { servicePagePaths } from '../../data/service-pages';
+import {
+	businessAddress,
+	businessAreaServed,
+	businessLanguages,
+	businessServiceTypes,
+	organizationIdPath,
+	organizationName,
+} from '../../data/seo';
 
 export function getStaticPaths() {
 	return locales.map((lang) => ({ params: { lang } }));
@@ -25,7 +33,6 @@ const heroImageUrl = new URL(heroImage, Astro.site ?? Astro.url).toString();
 const emailAddress = content.contact.email;
 const mailtoHref = `mailto:${emailAddress}`;
 const faqItems = content.faq.categories.flatMap((category) => category.items);
-const organizationName = 'CORBETTI OÜ';
 const serviceLinkLabels: Record<Locale, string> = {
 	et: 'Ava teenuse leht',
 	ru: 'Открыть страницу услуги',
@@ -34,10 +41,12 @@ const serviceLinkLabels: Record<Locale, string> = {
 	sv: 'Öppna tjänstesidan',
 };
 const serviceCardTargets = ['construction', 'renovation', 'concrete', 'facade', 'renovation', 'windows'];
+const organizationId = new URL(organizationIdPath, Astro.site ?? Astro.url).toString();
 const structuredData = [
 	{
 		'@context': 'https://schema.org',
 		'@type': 'GeneralContractor',
+		'@id': organizationId,
 		name: organizationName,
 		url: pageUrl,
 		image: heroImageUrl,
@@ -45,12 +54,23 @@ const structuredData = [
 		description: content.metaDescription,
 		telephone: content.contact.phone,
 		email: content.contact.email,
-		areaServed: {
-			'@type': 'Country',
-			name: 'Estonia',
-		},
-		knowsLanguage: ['et', 'ru', 'en', 'fi', 'sv'],
+		address: businessAddress,
+		areaServed: businessAreaServed,
+		knowsLanguage: businessLanguages,
+		availableLanguage: businessLanguages,
 		sameAs: [content.contact.secondaryHref],
+		hasOfferCatalog: {
+			'@type': 'OfferCatalog',
+			name: 'Construction and renovation services',
+			itemListElement: businessServiceTypes.map((serviceType) => ({
+				'@type': 'Offer',
+				itemOffered: {
+					'@type': 'Service',
+					name: serviceType,
+					areaServed: businessAreaServed,
+				},
+			})),
+		},
 	},
 	{
 		'@context': 'https://schema.org',
@@ -58,6 +78,24 @@ const structuredData = [
 		name: organizationName,
 		url: new URL('/', Astro.site ?? Astro.url).toString(),
 		inLanguage: lang,
+		publisher: {
+			'@id': organizationId,
+		},
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebPage',
+		name: content.metaTitle,
+		description: content.metaDescription,
+		url: pageUrl,
+		inLanguage: lang,
+		isPartOf: {
+			'@type': 'WebSite',
+			url: new URL('/', Astro.site ?? Astro.url).toString(),
+		},
+		about: {
+			'@id': organizationId,
+		},
 	},
 	{
 		'@context': 'https://schema.org',

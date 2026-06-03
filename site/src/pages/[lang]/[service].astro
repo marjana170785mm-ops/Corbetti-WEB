@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { locales, siteContent, type Locale } from '../../data/site';
 import { findServicePage, servicePagesByLocale } from '../../data/service-pages';
+import { businessAddress, businessAreaServed, organizationIdPath, organizationName } from '../../data/seo';
 
 export function getStaticPaths() {
 	return locales.flatMap((locale) =>
@@ -34,26 +35,42 @@ const alternates = [
 	})),
 ];
 const localizedServicePaths = Object.fromEntries(alternates.map((alternate) => [alternate.lang, alternate.href]));
+const organizationId = new URL(organizationIdPath, Astro.site ?? Astro.url).toString();
 const structuredData = [
 	{
 		'@context': 'https://schema.org',
 		'@type': 'Service',
+		'@id': `${pageUrl}#service`,
 		name: page.title,
 		description: page.metaDescription,
 		url: pageUrl,
 		image: new URL(heroImage, Astro.site ?? Astro.url).toString(),
 		provider: {
 			'@type': 'GeneralContractor',
-			name: 'CORBETTI OÜ',
+			'@id': organizationId,
+			name: organizationName,
 			url: new URL('/', Astro.site ?? Astro.url).toString(),
 			telephone: content.contact.phone,
 			email: content.contact.email,
+			address: businessAddress,
+			areaServed: businessAreaServed,
 		},
-		areaServed: {
-			'@type': 'Country',
-			name: 'Estonia',
-		},
+		areaServed: businessAreaServed,
 		serviceType: page.serviceType,
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebPage',
+		name: page.metaTitle,
+		description: page.metaDescription,
+		url: pageUrl,
+		inLanguage: lang,
+		about: {
+			'@id': `${pageUrl}#service`,
+		},
+		provider: {
+			'@id': organizationId,
+		},
 	},
 	{
 		'@context': 'https://schema.org',
