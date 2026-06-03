@@ -29,7 +29,7 @@ export const en: PageContent = {
 	},
 	hero: {
 		eyebrow: 'CORBETTI OÜ · construction company in Estonia',
-		title: 'Construction, renovation and finishing from one team.',
+		title: 'Renovation, construction, finishing work',
 		description:
 			'We handle full-scope building work for homeowners, companies and apartment associations with clear communication and practical execution.',
 		primaryCta: 'Start an inquiry',

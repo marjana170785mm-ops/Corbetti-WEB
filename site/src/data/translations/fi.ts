@@ -29,7 +29,7 @@ export const fi: PageContent = {
 	},
 	hero: {
 		eyebrow: 'CORBETTI OÜ · rakennusyritys Virossa',
-		title: 'Rakennus- ja remonttityöt samalta tiimiltä.',
+		title: 'Remontointi, rakentaminen, viimeistelytyöt',
 		description:
 			'Toteutamme rakentamisen, remontoinnin ja sisätyöt alusta loppuun yksityisasiakkaille, yrityksille ja taloyhtiöille.',
 		primaryCta: 'Lähetä kysely',

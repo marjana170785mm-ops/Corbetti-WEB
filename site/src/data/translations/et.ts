@@ -29,7 +29,7 @@ export const et: PageContent = {
 	},
 	hero: {
 		eyebrow: 'CORBETTI OÜ · ehituspartner Eestis',
-		title: 'Kõik ehitustööd ühest meeskonnast.',
+		title: 'Remont, ehitus, viimistlustööd',
 		description:
 			'Teostame ehitus-, renoveerimis- ja siseviimistlustöid algusest lõpuni. Töötame eraisikute, ettevõtete ja korteriühistutega.',
 		primaryCta: 'Saada päring',

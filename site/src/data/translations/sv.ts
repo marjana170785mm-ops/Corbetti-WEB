@@ -29,7 +29,7 @@ export const sv: PageContent = {
 	},
 	hero: {
 		eyebrow: 'CORBETTI OÜ · byggföretag i Estland',
-		title: 'Bygg, renovering och finish från samma team.',
+		title: 'Renovering, byggnation, finisharbeten',
 		description:
 			'Vi genomför bygg- och renoveringsarbeten från första förberedelse till färdigt resultat för privatkunder, företag och bostadsrättsföreningar.',
 		primaryCta: 'Skicka förfrågan',
